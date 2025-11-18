@@ -1,12 +1,20 @@
 ---
+title: "Muhammad Elsadany"
 layout: default
-title: Muhammad Elsadany
 ---
+
+<div align="center">
+  <img src="assets/img/profile.jpg" alt="Muhammad Elsadany" width="200" style="border-radius: 50%;">
+</div>
 
 # Muhammad Elsadany
 **Computational Biologist | Neuroscience Researcher**
 
-[Email] • [LinkedIn] • [GitHub] • [Download Resume]
+[📧 Email](mailto:melsadany24@gmail.com) • 
+[💼 LinkedIn](https://www.linkedin.com/in/melsadany/) • 
+[💻 GitHub](https://github.com/melsadany) • 
+[📄 Resume](assets/docs/profile/Elsadany-resume_111625.pdf) • 
+[🔬 ORCiD](https://orcid.org/0000-0002-1019-3905)
 
 ## About Me
 Brief 2-3 sentence introduction about your research interests and expertise.
