@@ -4,7 +4,7 @@ layout: default
 ---
 
 <div align="center">
-  <img src="assets/img/profile.jpg" alt="Muhammad Elsadany" width="200" style="border-radius: 50%;">
+  <img src="assets/images/headshor.jpg" alt="Muhammad Elsadany" width="200" style="border-radius: 50%;">
 </div>
 
 # Muhammad Elsadany
