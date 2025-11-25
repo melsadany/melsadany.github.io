@@ -30,6 +30,10 @@ My journey in the lab revealed how much I 'fit in' with the populations we study
 *Currently pursuing my PhD in Genetics at the University of Iowa, where I'm expanding my expertise in linguistics, computer vision, neuroimaging, and data science to better serve the neurodiversity community.*
 
 
+![Drug Brain Map Preview1](assets/images/drug-maps/overview.jpg)
+
+
+
 ## Selected Talks & Presentations
 
 ### [Beyond Yes/No: A Multimodal Autism Propensity Score from Genes to Brain](assets/docs/talks/INSAR.ppsx)
@@ -88,9 +92,6 @@ Comprehensive overview of structural MRI processing pipelines optimized for 7T s
 **Tools:** GWAS, eQTL, TWAS
 
 ### [Mapping Brain-Wide Drug Effects using Deep Learning]()
-
-![Drug Brain Map Preview1](assets/images/drug-maps/overview1.jpg)
-
 ![Drug Brain Map Preview2](assets/images/drug-maps/overview2.jpg)
 
 
