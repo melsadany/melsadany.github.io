@@ -30,10 +30,32 @@ My journey in the lab revealed how much I 'fit in' with the populations we study
 *Currently pursuing my PhD in Genetics at the University of Iowa, where I'm expanding my expertise in linguistics, computer vision, neuroimaging, and data science to better serve the neurodiversity community.*
 
 
+## Selected Talks & Presentations
+
+### [Beyond Yes/No: A Multimodal Autism Propensity Score from Genes to Brain](assets/docs/talks/INSAR.ppsx)
+**INSAR Conference 2025** | *Oral Presentation*
+
+![INSAR Preview](assets/images/INSAR/overview.jpg)
+
+
+Presented a novel deep learning framework that integrates multi-modal neuroimaging features—including fractional amplitude of low-frequency fluctuations (fALFF), structural morphometry, and diffusion tensor imaging (DTI) metrics—to generate a continuous autism likelihood score (0-1). This approach demonstrates the potential of combining multiple MRI modalities for improved neurophenotyping in autism spectrum disorder.
+
+**Key Topics:** Deep Learning, Multi-modal MRI Integration, fALFF, Structural MRI, DTI, Autism Biomarkers
+
+### [Optimizing Structural MRI Processing Pipelines for 7T Data](assets/doc/talks/INC.ppsx)
+**Iowa Neuroimaging Consortium, University of Iowa** | *Invited Talk*
+
+![INC Preview](assets/images/MRI-pipeline/overview.jpg)
+
+Comprehensive overview of structural MRI processing pipelines optimized for 7T scanner data, comparing various tools and approaches for cortical reconstruction, subcortical segmentation, and surface-based analysis. Provided practical guidance on pipeline selection based on specific research objectives and data characteristics.
+
+**Key Topics:** 7T MRI, Structural Processing Pipelines, Freesurfer, ANTs, FSL, Cortical Reconstruction, Quality Control
+
+
 ## Featured Projects
 
-### [Gene Expression Signature of Human Brain Stimulation](projects/brain-stim.md)
-![Brain Stimulation Preview](assets/images/brain-stim/overview.png)
+### [Gene Expression Signature of Human Brain Stimulation]()
+![Brain Stimulation Preview](assets/images/brain-stim/overview.jpg)
 
 • Engineered an end-to-end computational pipeline for single-nuclei multi-omics (RNA+ATAC) data, implementing a bootstrapped pseudo-bulk strategy and mixed-effects models (lmmSeq) to identify cell-type- specific responses to electrical stimulation.
 
@@ -41,8 +63,23 @@ My journey in the lab revealed how much I 'fit in' with the populations we study
 
 **Tools:** R, Seurat, lmmSeq, RRHO2, CellChat, scSeqComm, edgeR, DCA
 
-### [Polygenic Drug Response Signatures](projects/drug-response.md)
-![Drug Response Preview](assets/images/drug-response/overview.png)
+### [Exceptional Ability: A Multimodal Cognitive Study](assets/docs/talks/te-PS.ppsx)
+
+![te overview](assets/images/te/overview-PS.jpg)
+
+![te overview1](assets/images/te/dwi1.jpg)
+
+![te overview2](assets/images/te/dwi2.jpg)
+
+
+• Designed and implemented a multimodal analysis pipeline integrating NIH-Toolbox/IQ scores, a custom language task, acoustic feature extraction (audio), interview transcription (Whisper AI), facial landmarking (computer vision), and structural/functional/diffusion MRI.
+
+• Developed a 10-minute language task that effectively captures cognitive performance, demonstrating potential as an efficient digital biomarker.
+
+**Tools:** WhisperAI, PWEsuite, GPT, Archetypes, lingmatch, ANTs, AFNI, FSL, freesurfer, DSI-studio
+
+### [Polygenic Drug Response Signatures]()
+![Drug Response Preview](assets/images/drug-response/overview.jpg)
 
 • Developed a computational tool integrating genetic data (GWAS, eQTL, RNA-Seq) to generate personalized treatment recommendations for psychiatric disorders, with a focus on ADHD.
 
@@ -50,8 +87,12 @@ My journey in the lab revealed how much I 'fit in' with the populations we study
 
 **Tools:** GWAS, eQTL, TWAS
 
-### [Mapping Brain-Wide Drug Effects using Deep Learning](projects/drug-maps.md)
-![Drug Brain Map Preview](assets/images/drug-maps/overview.jpg)
+### [Mapping Brain-Wide Drug Effects using Deep Learning]()
+
+![Drug Brain Map Preview1](assets/images/drug-maps/overview1.jpg)
+
+![Drug Brain Map Preview2](assets/images/drug-maps/overview2.jpg)
+
 
 • Built a deep learning model that integrates brain-wide gene expression (Allen Institute) and fMRI trait maps with drug perturbation signatures (CMAP, LINCS) to predict functional brain activity changes for 838 compounds.
 
@@ -59,13 +100,16 @@ My journey in the lab revealed how much I 'fit in' with the populations we study
 
 **Tools:** DL, eQTL, TWAS, R Shiny
 
-### [Exceptional Ability: A Multimodal Cognitive Study](projects/te.md)
-![te overview](assets/images/te/overview.png)
+### [Linguistic and Behavioral Patterns in Bipolar Disorder from Social Media]()
+![Bipolar Reddit Analysis Preview](assets/images/bp-reddit/overview.jpg)
 
-• Designed and implemented a multimodal analysis pipeline integrating NIH-Toolbox/IQ scores, a custom language task, acoustic feature extraction (audio), interview transcription (Whisper AI), facial landmarking (computer vision), and structural/functional/diffusion MRI.
+• Analyzed 20 years of Reddit data to identify users self-identifying with bipolar disorder, extracting temporal patterns in activity, sleep cycles, emotional expression, and content preferences.
 
-• Developed a 10-minute language task that effectively captures cognitive performance, demonstrating potential as an efficient digital biomarker.
+• Applied natural language processing to track linguistic markers of mood episodes, including sentiment analysis, topic modeling, and GPT-4 embeddings to quantify emotional volatility over time.
 
-**Tools:** WhisperAI, PWEsuite, GPT, Archetypes, lingmatch, ANTs, AFNI, FSL, freesurfer, DSI-studio
+• Identified distinct behavioral signatures including disrupted sleep patterns (via posting times), content topic shifts, and cyclical emotional patterns corresponding to reported mood episodes.
+
+**Tools:** Python, NLP, GPT-4 Embeddings, Time-series Analysis, Sentiment Analysis, Topic Modeling
+
 
 
