@@ -68,4 +68,4 @@ My journey in the lab revealed how much I 'fit in' with the populations we study
 
 **Tools:** WhisperAI, PWEsuite, GPT, Archetypes, lingmatch, ANTs, AFNI, FSL, freesurfer, DSI-studio
 
-[View All Projects...]
+
