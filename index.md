@@ -1023,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="links-grid">
     <!-- Personal Story -->
     <div class="link-card">
-      <div class="link-icon">📖</div>
+      <div class="link-icon"></div>
       <h3>My Personal Journey</h3>
       <p>Read about my path into computational psychiatry and neurodiversity research</p>
       <a href="https://michaelson.lab.uiowa.edu/news/2025/02/ui-psychiatry-graduate-student-muhammad-elsadany-decodes-mental-health-data-and-his" class="link-button" target="_blank">Read Story</a>
@@ -1049,16 +1049,28 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="link-card">
       <div class="link-icon"></div>
       <h3>Research Features</h3>
-      <p>News articles and features about our research</p>
+      <p>News article about our research</p>
       <a href="https://medicineiowa.org/fall-2024/closer-exceptional-processing" class="link-button" target="_blank">View Articles</a>
     </div>
 
     <!-- Conference Materials -->
     <div class="link-card">
       <div class="link-icon"></div>
-      <h3>Conference Talks</h3>
-      <p>Slides and materials from my presentations at INSAR and other conferences</p>
-      <a href="assets/docs/talks/" class="link-button">Access Materials</a>
+      <h3>INSAR Talk</h3>
+      <p>Slides from my presentation at INSAR</p>
+      <a href="assets/docs/talks/INSAR.ppsx" class="link-button">Access Materials</a>
+    </div>
+    <div class="link-card">
+      <div class="link-icon"></div>
+      <h3>INC Talk</h3>
+      <p>Slides from my presentation at INC</p>
+      <a href="assets/docs/talks/INC.ppsx" class="link-button">Access Materials</a>
+    </div>
+    <div class="link-card">
+      <div class="link-icon"></div>
+      <h3>Seminar Talk</h3>
+      <p>Slides from my lst presentation at the IGPG seminar series</p>
+      <a href="assets/docs/talks/te-PS.ppsx" class="link-button">Access Materials</a>
     </div>
 
 
