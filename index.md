@@ -4,20 +4,54 @@ layout: default
 ---
 
 <style>
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
+    min-height: 100vh;
+  }
+  
+  /* Hide the download buttons */
+  .btn, .header-btn {
+    display: none !important;
+  }
+  
+  /* Remove any theme-specific header styles that might show buttons */
+  .page-header {
+    background: transparent !important;
+    color: white !important;
+    padding: 0 !important;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .main-content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
   }
   
   .profile-header {
     text-align: center;
     margin-bottom: 50px;
-    padding: 30px 0;
-    border-bottom: 2px solid #f0f0f0;
+    padding: 50px 30px 30px;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
   }
   
   .profile-img {
@@ -26,32 +60,42 @@ layout: default
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 4px solid #2c3e50;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
   
   .profile-header h1 {
     margin: 0;
     font-size: 2.5em;
-    color: #2c3e50;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
   
   .profile-header p {
     font-size: 1.3em;
     margin: 10px 0 20px;
-    color: #7f8c8d;
+    color: rgba(255,255,255,0.9);
   }
   
   .profile-links a {
     margin: 0 15px;
     text-decoration: none;
-    color: #3498db;
+    color: white;
     font-weight: 500;
     font-size: 1.1em;
+    padding: 8px 15px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 25px;
+    transition: all 0.3s ease;
   }
   
   .profile-links a:hover {
-    color: #2980b9;
-    text-decoration: underline;
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+  }
+  
+  .content-wrapper {
+    padding: 0 30px 50px;
   }
   
   .section {
@@ -60,9 +104,10 @@ layout: default
   
   .section h2 {
     color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 3px solid #3498db;
     padding-bottom: 10px;
     margin-bottom: 30px;
+    font-size: 2em;
   }
   
   .talk, .project {
@@ -71,65 +116,202 @@ layout: default
     border-radius: 10px;
     margin: 30px 0;
     border-left: 4px solid #3498db;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .talk:hover, .project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
   }
   
   .talk h3, .project h3 {
     margin-top: 0;
     color: #2c3e50;
+    font-size: 1.4em;
+  }
+  
+  .talk h3 a, .project h3 a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+  
+  .talk h3 a:hover, .project h3 a:hover {
+    color: #3498db;
   }
   
   .talk img, .project img {
     max-width: 100%;
     border-radius: 8px;
     margin: 15px 0;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
   
   .tools {
     background: #e8f4fc;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 15px;
+    border-radius: 8px;
     margin: 15px 0;
     font-style: italic;
+    border-left: 3px solid #3498db;
   }
   
   .gallery-section {
-    margin: 50px 0;
-  }
+  margin: 50px 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  background: #f8f9fa;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+  padding: 10px;
+  background: white;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox Modal Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  animation: fadeIn 0.3s;
+}
+
+.quote {
+  font-style: italic;
+  text-align: center;
+  color: #7f8c8d;
+  border-left: 3px solid #3498db;
+  padding: 20px;
+  margin: 30px 0;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 1.1em;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  transition: color 0.3s ease;
+}
+
+.close-lightbox:hover {
+  color: #3498db;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav button {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.lightbox-nav button:hover {
+  background: rgba(255,255,255,0.4);
+}
   
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-  }
-  
-  .gallery-item {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .gallery-item:hover {
-    transform: translateY(-5px);
-  }
-  
-  .gallery-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .quote {
-    font-style: italic;
-    text-align: center;
-    color: #7f8c8d;
-    border-left: 3px solid #3498db;
-    padding-left: 20px;
-    margin: 30px 0;
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px 10px;
+    }
+    
+    .content-wrapper {
+      padding: 0 15px 30px;
+    }
+    
+    .profile-header {
+      padding: 30px 15px 20px;
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .profile-header h1 {
+      font-size: 2em;
+    }
+    
+    .profile-links a {
+      display: block;
+      margin: 10px auto;
+      max-width: 200px;
+    }
+    
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -138,7 +320,7 @@ layout: default
   <div class="profile-header">
     <img src="assets/images/profile/headshot.jpg" alt="Muhammad Elsadany" class="profile-img">
     <h1>Muhammad Elsadany</h1>
-    <p><strong>Computational Biologist | Neuroscience Researcher</strong></p>
+    <p><strong>Computational Biologist | Psychiatry Researcher</strong></p>
     <div class="profile-links">
       <a href="mailto:melsadany24@gmail.com">📧 Email</a>
       <a href="https://www.linkedin.com/in/melsadany/">💼 LinkedIn</a>
@@ -196,7 +378,7 @@ layout: default
     <h2>Featured Projects</h2>
 
     <div class="project">
-      <h3><a href="projects/brain-stim.md">Gene Expression Signature of Human Brain Stimulation</a></h3>
+      <h3>Gene Expression Signature of Human Brain Stimulation</h3>
       <img src="assets/images/brain-stim/overview.jpg" alt="Brain Stimulation Analysis">
       <ul>
         <li>Engineered an end-to-end computational pipeline for single-nuclei multi-omics (RNA+ATAC) data, implementing a bootstrapped pseudo-bulk strategy and mixed-effects models (lmmSeq) to identify cell-type-specific responses to electrical stimulation.</li>
@@ -208,10 +390,8 @@ layout: default
     </div>
 
     <div class="project">
-      <h3><a href="projects/te.md">Exceptional Ability: A Multimodal Cognitive Study</a></h3>
+      <h3>Exceptional Ability: A Multimodal Cognitive Study</h3>
       <img src="assets/images/te/overview-PS.jpg" alt="Exceptional Ability Overview">
-      <img src="assets/images/te/dwi1.jpg" alt="DTI Analysis 1">
-      <img src="assets/images/te/dwi2.jpg" alt="DTI Analysis 2">
       <ul>
         <li>Designed and implemented a multimodal analysis pipeline integrating NIH-Toolbox/IQ scores, a custom language task, acoustic feature extraction (audio), interview transcription (Whisper AI), facial landmarking (computer vision), and structural/functional/diffusion MRI.</li>
         <li>Developed a 10-minute language task that effectively captures cognitive performance, demonstrating potential as an efficient digital biomarker.</li>
@@ -222,7 +402,7 @@ layout: default
     </div>
 
     <div class="project">
-      <h3><a href="projects/drug-response.md">Polygenic Drug Response Signatures</a></h3>
+      <h3>Polygenic Drug Response Signatures</h3>
       <img src="assets/images/drug-response/overview.jpg" alt="Drug Response Analysis">
       <ul>
         <li>Developed a computational tool integrating genetic data (GWAS, eQTL, RNA-Seq) to generate personalized treatment recommendations for psychiatric disorders, with a focus on ADHD.</li>
@@ -234,7 +414,7 @@ layout: default
     </div>
 
     <div class="project">
-      <h3><a href="projects/drug-maps.md">Mapping Brain-Wide Drug Effects using Deep Learning</a></h3>
+      <h3>Mapping Brain-Wide Drug Effects using Deep Learning</h3>
       <img src="assets/images/drug-maps/overview2.jpg" alt="Drug Effects Brain Map">
       <ul>
         <li>Built a deep learning model that integrates brain-wide gene expression (Allen Institute) and fMRI trait maps with drug perturbation signatures (CMAP, LINCS) to predict functional brain activity changes for 838 compounds.</li>
@@ -246,7 +426,7 @@ layout: default
     </div>
 
     <div class="project">
-      <h3><a href="projects/bp-reddit.md">Linguistic and Behavioral Patterns in Bipolar Disorder from Social Media</a></h3>
+      <h3>Linguistic and Behavioral Patterns in Bipolar Disorder from Social Media</h3>
       <img src="assets/images/bp-reddit/overview.jpg" alt="Bipolar Reddit Analysis">
       <ul>
         <li>Analyzed 20 years of Reddit data to identify users self-identifying with bipolar disorder, extracting temporal patterns in activity, sleep cycles, emotional expression, and content preferences.</li>
@@ -261,8 +441,8 @@ layout: default
 
   <!-- Automated Gallery Section -->
   <div class="gallery-section" id="gallery">
-    <h2>Data Visualization Gallery</h2>
-    <p>Explore my favorite data visualizations across all research projects. This gallery automatically loads images from my visualization collection.</p>
+  <h2>Data Visualization Gallery</h2>
+  <p>Explore my favorite data visualizations across all research projects. All figures are attached without any captions as they are not public yet. Click on any visualization to view it in full size. Navigate with arrow keys or swipe.</p>
     
     <div id="gallery-container" class="gallery-grid">
       <!-- Gallery will be populated automatically by JavaScript -->
@@ -271,42 +451,161 @@ layout: default
   </div>
 </div>
 
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+  <div class="lightbox-nav">
+    <button onclick="changeImage(-1)">&#10094;</button>
+    <button onclick="changeImage(1)">&#10095;</button>
+  </div>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
 <script>
-// Simple JavaScript to automatically load gallery images
+// Simplified gallery with lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Define your gallery images here - just update this array when you add new images
+  // Define your gallery images - just file paths, no titles/descriptions
   const galleryImages = [
-    'assets/images/brain-stim/overview.jpg',
     'assets/images/drug-maps/overview.jpg',
-    'assets/images/drug-maps/overview2.jpg',
-    'assets/images/drug-response/overview.jpg',
-    'assets/images/te/overview-PS.jpg',
-    'assets/images/te/dwi1.jpg',
-    'assets/images/te/dwi2.jpg',
-    'assets/images/bp-reddit/overview.jpg',
-    'assets/images/INSAR/overview.jpg',
-    'assets/images/MRI-pipeline/overview.jpg'
+    'assets/images/te/overview-lang.jpg',
+    'assets/gallery/arch-1.png',
+    'assets/gallery/bar-1.png',
+    'assets/gallery/bm-v1.jpg',
+    'assets/gallery/cyto-1.jpg',
+    'assets/gallery/den-1.png',
+    'assets/gallery/den-2.png',
+    'assets/gallery/den-3.png',
+    'assets/gallery/dwi.jpg',
+    'assets/gallery/euc-1.jpg',
+    'assets/gallery/fALFF-1.png',
+    'assets/gallery/forest-1.png',
+    'assets/gallery/iq-2.jpg',
+    'assets/gallery/jeo-1.png',
+    'assets/gallery/loli-1.png',
+    'assets/gallery/mo-1.png',
+    'assets/gallery/mph-1.svg',
+    'assets/gallery/nct-1.png',
+    'assets/gallery/ne-1.jpg',
+    'assets/gallery/net-1.png',
+    'assets/gallery/net-2.png',
+    'assets/gallery/peaks-1.jpg',
+    'assets/gallery/rad-1.svg',
+    'assets/gallery/scat-1.png',
+    'assets/gallery/scat-2.png',
+    'assets/gallery/scat-3.png',
+    'assets/gallery/sel-1.jpg',
+    'assets/gallery/sem-1.png',
+    'assets/gallery/sem-2.jpg',
+    'assets/gallery/st.png',
+    'assets/gallery/time-1.gif',
+    'assets/gallery/time-2.png',
+    'assets/gallery/umap-1.jpg',
+    'assets/gallery/upset-1.png',
+    'assets/gallery/viol-1.png',
+    'assets/gallery/wc-1.png'
+    
     // Add more image paths here as you create them
     // Format: 'assets/images/folder-name/filename.jpg'
   ];
   
   const galleryContainer = document.getElementById('gallery-container');
+  let currentImageIndex = 0;
   
+  // Initialize gallery
   if (galleryContainer && galleryImages.length > 0) {
-    galleryContainer.innerHTML = ''; // Clear loading message
+    galleryContainer.innerHTML = '';
     
-    galleryImages.forEach(imagePath => {
+    galleryImages.forEach((imageSrc, index) => {
       const galleryItem = document.createElement('div');
       galleryItem.className = 'gallery-item';
+      galleryItem.onclick = () => openLightbox(index);
       
       const img = document.createElement('img');
-      img.src = imagePath;
+      img.src = imageSrc;
       img.alt = 'Research Visualization';
-      img.loading = 'lazy'; // For better performance
+      img.loading = 'lazy';
       
       galleryItem.appendChild(img);
       galleryContainer.appendChild(galleryItem);
     });
+  }
+  
+  // Lightbox functions
+  window.openLightbox = function(index) {
+    currentImageIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    lightbox.style.display = 'block';
+    lightboxImg.src = galleryImages[index];
+    
+    // Prevent body scroll when lightbox is open
+    document.body.style.overflow = 'hidden';
+  }
+  
+  window.closeLightbox = function() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  
+  window.changeImage = function(step) {
+    currentImageIndex += step;
+    
+    // Loop around if at ends
+    if (currentImageIndex >= galleryImages.length) {
+      currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+      currentImageIndex = galleryImages.length - 1;
+    }
+    
+    openLightbox(currentImageIndex);
+  }
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox.style.display === 'block') {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        changeImage(-1);
+      } else if (e.key === 'ArrowRight') {
+        changeImage(1);
+      }
+    }
+  });
+  
+  // Close lightbox when clicking outside the image
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeLightbox();
+    }
+  });
+  
+  // Touch swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  document.getElementById('lightbox').addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        changeImage(1); // Swipe left - next image
+      } else {
+        changeImage(-1); // Swipe right - previous image
+      }
+    }
   }
 });
 </script>
