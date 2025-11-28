@@ -866,9 +866,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="link-group">
       <h3>Personal & Background</h3>
       <ul>
-        <li>📖 <a href="https://michaelson.lab.uiowa.edu/news/2025/02/ui-psychiatry-graduate-student-muhammad-elsadany-decodes-mental-health-data-and-his" target="_blank">My Neurodiversity Journey</a></li>
-        <li>🔬 <a href="https://michaelson.lab.uiowa.edu/people/muhammad-elsadany" target="_blank">Michaelson Lab Profile</a></li>
-        <li>🎓 <a href="https://genetics.grad.uiowa.edu/people/muhammad-elsadany" target="_blank">IGP Genetics Program</a></li>
+        <li><a href="https://michaelson.lab.uiowa.edu/news/2025/02/ui-psychiatry-graduate-student-muhammad-elsadany-decodes-mental-health-data-and-his" target="_blank">My Neurodiversity Journey</a></li>
+        <li><a href="https://michaelson.lab.uiowa.edu/people/muhammad-elsadany" target="_blank">Michaelson Lab Profile</a></li>
+        <li><a href="https://genetics.grad.uiowa.edu/people/muhammad-elsadany" target="_blank">IGP Genetics Program</a></li>
       </ul>
     </div>
     
