@@ -77,22 +77,31 @@ layout: default
     color: rgba(255,255,255,0.9);
   }
   
-  .profile-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    font-size: 1.1em;
-    padding: 8px 15px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 25px;
-    transition: all 0.3s ease;
-  }
-  
-  .profile-links a:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-2px);
-  }
+  .profile-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95em; /* Reduced from 1.1em */
+  padding: 6px 12px; /* Reduced from 8px 15px */
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px; /* Slightly smaller radius */
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping inside links */
+}
+
+.profile-links a:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
   
   .content-wrapper {
     padding: 0 30px 50px;
@@ -307,38 +316,59 @@ layout: default
 }
   
   /* Responsive design */
-  @media (max-width: 768px) {
-    .container {
-      padding: 20px 10px;
-    }
-    
-    .content-wrapper {
-      padding: 0 15px 30px;
-    }
-    
-    .profile-header {
-      padding: 30px 15px 20px;
-    }
-    
-    .profile-img {
-      width: 150px;
-      height: 150px;
-    }
-    
-    .profile-header h1 {
-      font-size: 2em;
-    }
-    
-    .profile-links a {
-      display: block;
-      margin: 10px auto;
-      max-width: 200px;
-    }
-    
-    .gallery-grid {
-      grid-template-columns: 1fr;
-    }
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
   }
+  
+  .content-wrapper {
+    padding: 0 15px 30px;
+  }
+  
+  .profile-header {
+    padding: 30px 15px 20px;
+  }
+  
+  .profile-img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .profile-header h1 {
+    font-size: 2em;
+  }
+  
+  .profile-header p {
+    font-size: 1.1em;
+  }
+  
+  .profile-links {
+    gap: 8px;
+  }
+  
+  .profile-links a {
+    font-size: 0.85em;
+    padding: 5px 10px;
+    display: inline-block; /* Keep as inline for mobile */
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .profile-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-links a {
+    width: 200px;
+    text-align: center;
+  }
+}
 </style>
 
 <div class="container">
@@ -511,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'assets/gallery/cyto-1.jpg',
     'assets/gallery/den-1.png',
     'assets/gallery/den-2.png',
-    'assets/gallery/den-3.png',
+    'assets/gallery/den-3.jpg',
     'assets/gallery/euc-1.jpg',
     'assets/gallery/fALFF-1.png',
     'assets/gallery/forest-1.png',
