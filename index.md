@@ -314,6 +314,32 @@ layout: default
 .lightbox-nav button:hover {
   background: rgba(255,255,255,0.4);
 }
+
+
+/* Video Section Styles */
+.video-container {
+  max-width: 800px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.video-protection-note {
+  text-align: center;
+  margin-top: 10px;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Additional protection styles */
+video {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
   
   /* Responsive design */
 @media (max-width: 768px) {
@@ -403,6 +429,30 @@ layout: default
     
     <p><em>Currently pursuing my PhD in Genetics at the University of Iowa, where I'm expanding my expertise in linguistics, computer vision, neuroimaging, and data science to better serve the neurodiversity community.</em></p>
   </div>
+
+<!-- Video Summary Section -->
+<div class="section" id="video-summary">
+  <h2>Video Summary</h2>
+  <p>For a quick overview of my research and background, watch this video summary created by NotebookLM:</p>
+  
+  <div class="video-container">
+    <video 
+      id="summaryVideo"
+      controls
+      controlsList="nodownload" 
+      poster="assets/video/overview.png"
+      oncontextmenu="return false;"
+      style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"
+    >
+      <source src="assets/video/vid-1.mp4" type="video/mp4">
+      Your browser doesn't support the video tag. Please <a href="assets/video/vid-1.mp4">download the video</a> instead.
+    </video>
+    
+    <div class="video-protection-note">
+      <small>🔒 Video streaming only - download disabled for privacy</small>
+    </div>
+  </div>
+</div>
 
   <!-- Talks Section -->
   <div class="section" id="talks">
@@ -725,6 +775,43 @@ document.addEventListener('DOMContentLoaded', function() {
         changeImage(-1); // Swipe right - previous image
       }
     }
+  }
+});
+
+// Video protection
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('summaryVideo');
+  
+  if (video) {
+    // Disable right-click on video
+    video.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Prevent video download via keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Additional protection - hide source on inspect (basic)
+    video.addEventListener('loadstart', function() {
+      // This makes it slightly harder to find the direct video URL
+      const sources = video.getElementsByTagName('source');
+      for (let source of sources) {
+        source.setAttribute('data-src', source.src);
+        source.src = '';
+      }
+      // Restore sources after a brief moment
+      setTimeout(() => {
+        for (let source of sources) {
+          source.src = source.getAttribute('data-src');
+        }
+      }, 100);
+    });
   }
 });
 </script>
