@@ -209,6 +209,32 @@ layout: default
   animation: fadeIn 0.3s;
 }
 
+/* Gallery Show More/Less Styles */
+.show-more-button {
+  background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.show-more-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #2980b9 0%, #34495e 100%);
+}
+
+.gallery-count {
+  text-align: center;
+  color: #7f8c8d;
+  margin: 15px 0;
+  font-style: italic;
+}
+
 .quote {
   font-style: italic;
   text-align: center;
@@ -439,15 +465,18 @@ layout: default
     </div>
   </div>
 
-  <!-- Automated Gallery Section -->
-  <div class="gallery-section" id="gallery">
+<!-- Enhanced Gallery Section -->
+<div class="gallery-section" id="gallery">
   <h2>Data Visualization Gallery</h2>
-  <p>Explore my favorite data visualizations across all research projects. All figures are attached without any captions as they are not public yet. Click on any visualization to view it in full size. Navigate with arrow keys or swipe.</p>
-    
-    <div id="gallery-container" class="gallery-grid">
-      <!-- Gallery will be populated automatically by JavaScript -->
-      <p>Loading visualizations...</p>
-    </div>
+  <p>Explore my favorite data visualizations across all research projects. Click on any visualization to view it in full size.</p>
+  
+  <div id="gallery-container" class="gallery-grid">
+    <!-- Initial images will be loaded here -->
+  </div>
+  
+  <div style="text-align: center; margin-top: 30px;">
+    <button id="show-more-btn" class="show-more-button">Show More Visualizations</button>
+    <button id="show-less-btn" class="show-more-button" style="display: none;">Show Less</button>
   </div>
 </div>
 
@@ -462,20 +491,27 @@ layout: default
 </div>
 
 <script>
-// Simplified gallery with lightbox functionality
+// Enhanced gallery with show more functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Define your gallery images - just file paths, no titles/descriptions
+  // Define your gallery images - just file paths
   const galleryImages = [
+    'assets/gallery/arch-1.png',
+    'assets/gallery/dwi.jpg',
+    'assets/gallery/nct-1.png',
+    'assets/gallery/rad-1.svg',
+    'assets/gallery/ne-1.jpg',
+    'assets/gallery/wc-1.png',
+    
+    // remaining images
+    
     'assets/images/drug-maps/overview.jpg',
     'assets/images/te/overview-lang.jpg',
-    'assets/gallery/arch-1.png',
     'assets/gallery/bar-1.png',
     'assets/gallery/bm-v1.jpg',
     'assets/gallery/cyto-1.jpg',
     'assets/gallery/den-1.png',
     'assets/gallery/den-2.png',
     'assets/gallery/den-3.png',
-    'assets/gallery/dwi.jpg',
     'assets/gallery/euc-1.jpg',
     'assets/gallery/fALFF-1.png',
     'assets/gallery/forest-1.png',
@@ -484,12 +520,9 @@ document.addEventListener('DOMContentLoaded', function() {
     'assets/gallery/loli-1.png',
     'assets/gallery/mo-1.png',
     'assets/gallery/mph-1.svg',
-    'assets/gallery/nct-1.png',
-    'assets/gallery/ne-1.jpg',
     'assets/gallery/net-1.png',
     'assets/gallery/net-2.png',
     'assets/gallery/peaks-1.jpg',
-    'assets/gallery/rad-1.svg',
     'assets/gallery/scat-1.png',
     'assets/gallery/scat-2.png',
     'assets/gallery/scat-3.png',
@@ -501,36 +534,92 @@ document.addEventListener('DOMContentLoaded', function() {
     'assets/gallery/time-2.png',
     'assets/gallery/umap-1.jpg',
     'assets/gallery/upset-1.png',
-    'assets/gallery/viol-1.png',
-    'assets/gallery/wc-1.png'
-    
-    // Add more image paths here as you create them
-    // Format: 'assets/images/folder-name/filename.jpg'
+    'assets/gallery/viol-1.png'
   ];
   
   const galleryContainer = document.getElementById('gallery-container');
+  const showMoreBtn = document.getElementById('show-more-btn');
+  const showLessBtn = document.getElementById('show-less-btn');
   let currentImageIndex = 0;
+  let imagesPerLoad = 6; // Number of images to show initially and per "show more"
+  let currentlyVisible = 0;
   
   // Initialize gallery
   if (galleryContainer && galleryImages.length > 0) {
-    galleryContainer.innerHTML = '';
+    // Show initial set of images
+    loadMoreImages();
+    updateButtonVisibility();
+  }
+  
+  // Load more images function
+  function loadMoreImages() {
+    const endIndex = Math.min(currentlyVisible + imagesPerLoad, galleryImages.length);
     
-    galleryImages.forEach((imageSrc, index) => {
+    for (let i = currentlyVisible; i < endIndex; i++) {
       const galleryItem = document.createElement('div');
       galleryItem.className = 'gallery-item';
-      galleryItem.onclick = () => openLightbox(index);
+      galleryItem.onclick = () => openLightbox(i);
       
       const img = document.createElement('img');
-      img.src = imageSrc;
+      img.src = galleryImages[i];
       img.alt = 'Research Visualization';
       img.loading = 'lazy';
       
       galleryItem.appendChild(img);
       galleryContainer.appendChild(galleryItem);
-    });
+    }
+    
+    currentlyVisible = endIndex;
+    updateButtonVisibility();
   }
   
-  // Lightbox functions
+  // Show less images function
+  function showLessImages() {
+    // Remove all gallery items
+    galleryContainer.innerHTML = '';
+    currentlyVisible = 0;
+    
+    // Reload only the initial set
+    loadMoreImages();
+  }
+  
+  // Update button visibility based on current state
+  function updateButtonVisibility() {
+    if (currentlyVisible >= galleryImages.length) {
+      showMoreBtn.style.display = 'none';
+      showLessBtn.style.display = 'inline-block';
+    } else {
+      showMoreBtn.style.display = 'inline-block';
+      showLessBtn.style.display = 'none';
+    }
+    
+    // Update gallery count display
+    updateGalleryCount();
+  }
+  
+  // Add gallery count display
+  function updateGalleryCount() {
+    // Remove existing count if any
+    const existingCount = document.getElementById('gallery-count');
+    if (existingCount) {
+      existingCount.remove();
+    }
+    
+    // Create new count display
+    const countDiv = document.createElement('div');
+    countDiv.id = 'gallery-count';
+    countDiv.className = 'gallery-count';
+    countDiv.textContent = `Showing ${currentlyVisible} of ${galleryImages.length} visualizations`;
+    
+    // Insert after gallery container
+    galleryContainer.parentNode.insertBefore(countDiv, galleryContainer.nextSibling);
+  }
+  
+  // Button event listeners
+  showMoreBtn.addEventListener('click', loadMoreImages);
+  showLessBtn.addEventListener('click', showLessImages);
+  
+  // Lightbox functions (keep your existing lightbox code)
   window.openLightbox = function(index) {
     currentImageIndex = index;
     const lightbox = document.getElementById('lightbox');
