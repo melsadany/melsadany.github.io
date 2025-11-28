@@ -395,6 +395,47 @@ video {
     text-align: center;
   }
 }
+
+/* Compact Links Version */
+.compact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.link-group h3 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.link-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-group li {
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.link-group a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  display: block;
+  padding: 5px 0;
+}
+
+.link-group a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
 </style>
 
 <div class="container">
@@ -545,7 +586,7 @@ video {
     </div>
   </div>
 
-<!-- Enhanced Gallery Section -->
+<!-- Gallery Section -->
 <div class="gallery-section" id="gallery">
   <h2>Data Visualization Gallery</h2>
   <p>Explore my favorite data visualizations across all research projects. Click on any visualization to view it in full size.</p>
@@ -571,10 +612,11 @@ video {
 </div>
 
 <script>
-// Enhanced gallery with show more functionality
+// Gallery with show more functionality
 document.addEventListener('DOMContentLoaded', function() {
   // Define your gallery images - just file paths
   const galleryImages = [
+    // first set
     'assets/gallery/arch-1.png',
     'assets/gallery/dwi.jpg',
     'assets/gallery/nct-1.png',
@@ -815,3 +857,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
+<!-- Compact Links Version -->
+<div class="section" id="media-links">
+  <h2>Media & Additional Links</h2>
+  
+  <div class="compact-links">
+    <div class="link-group">
+      <h3>Personal & Background</h3>
+      <ul>
+        <li>📖 <a href="https://michaelson.lab.uiowa.edu/news/2025/02/ui-psychiatry-graduate-student-muhammad-elsadany-decodes-mental-health-data-and-his" target="_blank">My Neurodiversity Journey</a></li>
+        <li>🔬 <a href="https://michaelson.lab.uiowa.edu/people/muhammad-elsadany" target="_blank">Michaelson Lab Profile</a></li>
+        <li>🎓 <a href="https://genetics.grad.uiowa.edu/people/muhammad-elsadany" target="_blank">IGP Genetics Program</a></li>
+      </ul>
+    </div>
+    
+    <div class="link-group">
+      <h3>Research & Outreach</h3>
+      <ul>
+        <li><a href="https://medicineiowa.org/fall-2024/closer-exceptional-processing" target="_blank">Featured Research Articles</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
