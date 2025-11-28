@@ -1054,16 +1054,12 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <!-- Conference Materials -->
-<div class="link-card">
-  <div class="link-icon">🎤</div>
-  <h3>INSAR 2025 Talk</h3>
-  <p>Beyond Yes/No: A Multimodal Autism Propensity Score from Genes to Brain</p>
-  <a href="https://view.officeapps.live.com/op/view.aspx?src=https://melsadany.github.io/assets/docs/talks/INSAR.ppsx" 
-     class="link-button" target="_blank">View Presentation with Animations</a>
-  <div class="download-note">
-    <small><a href="assets/docs/talks/INSAR.ppsx" download>Download Original</a></small>
-  </div>
-</div>
+    <div class="link-card">
+      <div class="link-icon"></div>
+      <h3>INSAR Talk</h3>
+      <p>Slides from my presentation at INSAR</p>
+      <a href="assets/docs/talks/INSAR.ppsx" class="link-button">Access Materials</a>
+    </div>
     <div class="link-card">
       <div class="link-icon"></div>
       <h3>INC Talk</h3>
