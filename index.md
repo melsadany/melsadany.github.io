@@ -1069,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="link-card">
       <div class="link-icon"></div>
       <h3>Seminar Talk</h3>
-      <p>Slides from my lst presentation at the IGPG seminar series</p>
+      <p>Slides from my last presentation at the IGPG seminar series</p>
       <a href="assets/docs/talks/te-PS.ppsx" class="link-button">Access Materials</a>
     </div>
 
