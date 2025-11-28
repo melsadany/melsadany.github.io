@@ -485,7 +485,7 @@ video {
       oncontextmenu="return false;"
       style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"
     >
-      <source src="assets/video/vid-1.mp4" type="video/mp4">
+      <source src="assets/video/vid-2.mp4" type="video/mp4">
       Your browser doesn't support the video tag. Please <a href="assets/video/vid-1.mp4">download the video</a> instead.
     </video>
     
