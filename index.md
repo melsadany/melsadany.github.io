@@ -41,7 +41,7 @@ layout: default
     --border-color: #e9ecef;
     --shadow-color: rgba(0,0,0,0.08);
     
-    /* Your Color Palette */
+    /* My Color Palette */
     --primary: #4782b4;
     --primary-dark: #3C4856;
     --accent: #ff4600;
@@ -93,28 +93,28 @@ layout: default
     display: none !important;
   }
   
-  /* Main Layout - Full Width Design */
+  /* Main Layout - Full Width Design - FIXED */
   .layout-container {
-    display: grid;
-    grid-template-columns: 280px 1fr;
+    display: flex;
     min-height: 100vh;
-    max-width: 1600px; /* Increased from 1500px */
-    margin: 0 auto;
+    width: 100%;
     background: var(--bg-primary);
-    box-shadow: 0 0 40px rgba(0,0,0,0.1);
   }
   
-  /* Sidebar Styles */
+  /* Sidebar Styles - FIXED POSITION */
   .sidebar {
     background: var(--bg-secondary);
     padding: 40px 25px;
     border-right: 1px solid var(--border-color);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     height: 100vh;
+    width: 280px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    z-index: 1000;
   }
   
   .profile-container {
@@ -283,17 +283,49 @@ layout: default
     transform: translateX(24px);
   }
   
-  /* Main Content - Full Width */
+  /* Main Content - Full Width - FIXED */
   .main-content {
-    padding: 50px 70px; /* Increased padding */
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    padding: 50px 70px;
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* justified text */
+  .main-content p,
+  .main-content li,
+  .main-content blockquote,
+  .talk p,
+  .project p,
+  .gallery-count,
+  .link-card p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+  
+  /* Keep headings left-aligned */
+  .main-content h1,
+  .main-content h2, 
+  .main-content h3,
+  .main-content h4,
+  .main-content h5,
+  .main-content h6,
+  .talk h3,
+  .project h3,
+  .link-card h3 {
+    text-align: left;
+  }
+  
+  .main-content p {
+    text-align-last: left; /* Last line of paragraphs left-aligned */
   }
   
   .section {
     margin: 80px 0;
     scroll-margin-top: 40px;
-    max-width: 100%; /* Ensure it takes full width */
+    width: 100%;
   }
   
   .section:first-of-type {
@@ -328,16 +360,45 @@ layout: default
     margin: 0;
   }
   
+  /* Hamburger Menu (Mobile Only) */
+  .hamburger-menu {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+  }
+  
   /* Content Cards */
   .talk, .project {
     background: var(--card-bg);
-    padding: 35px; /* Increased padding */
+    padding: 35px;
     border-radius: 12px;
-    margin: 40px 0; /* Increased margin */
+    margin: 40px 0;
     border-left: 4px solid var(--accent);
     box-shadow: 0 5px 20px var(--shadow-color);
     transition: all 0.3s ease;
-    width: 100%; /* Ensure full width */
+    width: 100%;
   }
   
   .talk:hover, .project:hover {
@@ -346,7 +407,7 @@ layout: default
   }
   
   .talk h3, .project h3 {
-    font-size: 1.6em; /* Slightly larger */
+    font-size: 1.6em;
     color: var(--text-primary);
     margin-bottom: 15px;
   }
@@ -354,36 +415,36 @@ layout: default
   .talk img, .project img {
     max-width: 100%;
     border-radius: 8px;
-    margin: 20px 0; /* Increased margin */
+    margin: 20px 0;
     border: 2px solid var(--border-color);
   }
   
   .tools {
     background: linear-gradient(135deg, var(--light) 0%, var(--tertiary) 100%);
     color: white;
-    padding: 15px 20px; /* Increased padding */
+    padding: 15px 20px;
     border-radius: 8px;
-    margin: 20px 0; /* Increased margin */
+    margin: 20px 0;
     font-style: italic;
-    font-size: 1.05em; /* Slightly larger */
+    font-size: 1.05em;
   }
   
   /* Gallery - Improved Layout */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Increased min size */
-    gap: 25px; /* Increased gap */
-    margin: 40px 0; /* Increased margin */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
   }
   
   .gallery-item {
-    border-radius: 10px; /* Slightly larger */
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 25px var(--shadow-color); /* Increased shadow */
+    box-shadow: 0 8px 25px var(--shadow-color);
     transition: all 0.3s ease;
     cursor: pointer;
     background: var(--card-bg);
-    height: 320px; /* Fixed height for consistency */
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -398,8 +459,8 @@ layout: default
   .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Show full image without cropping */
-    padding: 15px; /* Increased padding */
+    object-fit: contain;
+    padding: 15px;
     background: var(--bg-primary);
     transition: transform 0.3s ease;
   }
@@ -420,7 +481,7 @@ layout: default
     background: linear-gradient(135deg, var(--accent) 0%, var(--warm) 100%);
     color: white;
     border: none;
-    padding: 14px 32px; /* Larger buttons */
+    padding: 14px 32px;
     border-radius: 25px;
     font-size: 1.1em;
     cursor: pointer;
@@ -446,15 +507,15 @@ layout: default
   /* Links Grid */
   .links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Increased min size */
-    gap: 30px; /* Increased gap */
-    margin: 40px 0; /* Increased margin */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
   }
   
   .link-card {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 30px; /* Increased padding */
+    padding: 30px;
     text-align: center;
     box-shadow: 0 5px 20px var(--shadow-color);
     transition: all 0.3s ease;
@@ -487,7 +548,7 @@ layout: default
     background: linear-gradient(135deg, var(--primary) 0%, var(--tertiary) 100%);
     color: white;
     text-decoration: none;
-    padding: 12px 24px; /* Larger button */
+    padding: 12px 24px;
     border-radius: 25px;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -500,7 +561,7 @@ layout: default
     box-shadow: 0 8px 20px rgba(255, 70, 0, 0.3);
   }
   
-  /* Lightbox - Improved Swipe Support */
+  /* Lightbox */
   .lightbox {
     display: none;
     position: fixed;
@@ -510,7 +571,6 @@ layout: default
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.95);
-    -webkit-tap-highlight-color: transparent;
     user-select: none;
     touch-action: manipulation;
   }
@@ -525,8 +585,6 @@ layout: default
     border-radius: 8px;
     border: 3px solid var(--accent);
     background: black;
-    -webkit-user-drag: none;
-    user-drag: none;
   }
   
   .close-lightbox {
@@ -568,7 +626,6 @@ layout: default
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    -webkit-tap-highlight-color: transparent;
   }
   
   .lightbox-nav button:hover {
@@ -576,30 +633,12 @@ layout: default
     transform: scale(1.1);
   }
   
-  /* Mobile Swipe Support */
-  @media (hover: none) and (pointer: coarse) {
-    .lightbox-nav {
-      display: none; /* Hide buttons on touch devices, rely on swipe */
-    }
-    
-    .gallery-item {
-      height: 280px; /* Smaller on mobile */
-    }
-    
-    .gallery-grid {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-  }
-  
-  /* Responsive Design */
+  /* Mobile Responsive Design */
   @media (max-width: 1200px) {
-    .layout-container {
-      grid-template-columns: 250px 1fr;
-      max-width: 100%;
-    }
-    
     .main-content {
       padding: 40px 50px;
+      width: calc(100% - 280px);
+      margin-left: 280px;
     }
     
     .gallery-grid,
@@ -608,26 +647,32 @@ layout: default
     }
   }
   
+  /* Tablet and Mobile - Sidebar becomes hamburger menu */
   @media (max-width: 992px) {
-    .layout-container {
-      grid-template-columns: 1fr;
+    .hamburger-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .sidebar {
-      height: auto;
-      position: static;
-      border-right: none;
-      border-bottom: 1px solid var(--border-color);
-      padding: 30px 20px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      width: 280px;
     }
     
-    .profile-img {
-      width: 150px;
-      height: 150px;
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    
+    .mobile-overlay.active {
+      display: block;
     }
     
     .main-content {
-      padding: 30px 25px;
+      width: 100%;
+      margin-left: 0;
+      padding: 30px 25px 80px;
     }
     
     .section {
@@ -638,11 +683,16 @@ layout: default
     .links-grid {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+    }
   }
   
   @media (max-width: 768px) {
     .main-content {
-      padding: 25px 20px;
+      padding: 25px 20px 80px;
     }
     
     .section h2 {
@@ -665,12 +715,6 @@ layout: default
     
     .talk h3, .project h3 {
       font-size: 1.4em;
-    }
-    
-    .lightbox-nav button {
-      display: block; /* Show buttons on mobile if needed */
-      font-size: 30px;
-      padding: 12px 20px;
     }
   }
   
@@ -700,16 +744,18 @@ layout: default
     .contact-links {
       flex-direction: column;
     }
-    
-    .contact-link {
-      justify-content: center;
-    }
   }
 </style>
 
+<!-- Hamburger Menu for Mobile -->
+<button class="hamburger-menu" id="hamburgerBtn">
+  <span>☰</span>
+</button>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
 <div class="layout-container">
   <!-- Sidebar -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <!-- Profile Section -->
     <div class="profile-container">
       <img src="assets/images/profile/headshot.jpg" alt="Muhammad Elsadany" class="profile-img">
@@ -791,9 +837,6 @@ layout: default
   
   <!-- Main Content -->
   <main class="main-content">
-    <!-- (Your existing content sections remain exactly the same - no changes needed here) -->
-    <!-- Keep all your sections from #about to #media-links exactly as they were -->
-    
     <!-- About Me Section -->
     <section id="about" class="section">
       <div class="section-title">
@@ -802,17 +845,17 @@ layout: default
       </div>
       <p>My passion for genetics and mental health research stems from both personal experience and a deep curiosity about human behavior. As an autistic researcher, I bring a unique perspective to understanding neurodiversity—not just as a subject of study, but as a lived reality.</p>
       
-      <p>My work focuses on decoding the complex relationships between genetics, cognition, and mental health through computational approaches. I integrate diverse data modalities—genetic, clinical, neuroimaging, audio, interview, and facial imagery—to uncover patterns that bridge scientific discovery with practical interventions.</p>
+      <p>My research focuses on decoding the complex relationships between genetics, cognition, and mental health through computational approaches. I integrate diverse data modalities—genetic, clinical, neuroimaging, audio, interview, and facial imagery—to uncover patterns that bridge scientific discovery with practical interventions.</p>
       
       <p>A central theme of my research is leveraging language as a powerful metric for understanding cognitive functions and mental health challenges. I'm particularly interested in developing accessible tools that can capture the nuances of human experience often missed by traditional assessments.</p>
       
-      <p>My journey in the lab revealed how much I 'fit in' with the populations we study, leading to my own autism diagnosis at 25. This personal insight fuels my commitment to creating a more inclusive world where neurodiverse individuals are not just understood, but valued for their unique strengths.</p>
+      <p>My journey in the lab revealed how much I 'fit in' with the populations we study, leading to being professionally diagnosed with autism at 25. This personal insight fuels my commitment to creating a more inclusive world where neurodiverse individuals are not just understood, but valued for their unique strengths.</p>
       
       <blockquote style="font-style: italic; border-left: 3px solid var(--accent); padding-left: 20px; margin: 30px 0; color: var(--text-secondary);">
         "I learn by going where I have to go." – Theodore Roethke
       </blockquote>
       
-      <p><em>Currently pursuing my PhD in Genetics at the University of Iowa, where I'm expanding my expertise in linguistics, computer vision, neuroimaging, and data science to better serve the neurodiversity community.</em></p>
+      <p><em>Currently pursuing my PhD in Computational Genetics at the University of Iowa, where I'm expanding my expertise in linguistics, computer vision, neuroimaging, and data science to better serve the neurodiversity community.</em></p>
     </section>
     
     <!-- Video Summary Section -->
@@ -1038,7 +1081,34 @@ themeToggle.addEventListener('change', function() {
   localStorage.setItem('theme', newTheme);
 });
 
-// Gallery functionality with improved mobile swipe
+// Hamburger Menu Toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebar = document.getElementById('sidebar');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+if (hamburgerBtn && sidebar) {
+  hamburgerBtn.addEventListener('click', function() {
+    sidebar.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+  });
+  
+  mobileOverlay.addEventListener('click', function() {
+    sidebar.classList.remove('active');
+    mobileOverlay.classList.remove('active');
+  });
+  
+  // Close sidebar when clicking on a nav link on mobile
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      if (window.innerWidth <= 992) {
+        sidebar.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+      }
+    });
+  });
+}
+
+// Gallery functionality
 document.addEventListener('DOMContentLoaded', function() {
   const galleryImages = [
     'assets/gallery/arch-1.png',
@@ -1109,10 +1179,6 @@ document.addEventListener('DOMContentLoaded', function() {
       galleryItem.className = 'gallery-item';
       galleryItem.onclick = () => openLightbox(i);
       
-      // Add touch events for mobile preview
-      galleryItem.addEventListener('touchstart', handleGalleryTouchStart);
-      galleryItem.addEventListener('touchend', handleGalleryTouchEnd);
-      
       const img = document.createElement('img');
       img.src = galleryImages[i];
       img.alt = 'Research Visualization';
@@ -1147,34 +1213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     galleryCount.textContent = `Showing ${currentlyVisible} of ${galleryImages.length} visualizations`;
   }
   
-  // Mobile touch handling for gallery items
-  let touchStartTime = 0;
-  let touchStartX = 0;
-  let touchStartY = 0;
-  
-  function handleGalleryTouchStart(e) {
-    touchStartTime = Date.now();
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }
-  
-  function handleGalleryTouchEnd(e) {
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-    const touchDuration = Date.now() - touchStartTime;
-    
-    // If it's a quick, short touch (not a swipe), open the lightbox
-    if (Math.abs(deltaX) < 50 && Math.abs(deltaY) < 50 && touchDuration < 300) {
-      const index = Array.from(galleryContainer.children).indexOf(e.target.closest('.gallery-item'));
-      if (index !== -1) {
-        openLightbox(index);
-      }
-    }
-  }
-  
-  // Lightbox functions with improved mobile swipe
+  // Lightbox functions
   window.openLightbox = function(index) {
     currentImageIndex = index;
     const lightbox = document.getElementById('lightbox');
@@ -1184,14 +1223,6 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxImg.src = galleryImages[index];
     isLightboxOpen = true;
     document.body.style.overflow = 'hidden';
-    
-    // Force focus for keyboard navigation
-    lightbox.focus();
-    
-    // Add touch event listeners for swipe navigation
-    lightbox.addEventListener('touchstart', handleLightboxTouchStart);
-    lightbox.addEventListener('touchmove', handleLightboxTouchMove);
-    lightbox.addEventListener('touchend', handleLightboxTouchEnd);
   }
   
   window.closeLightbox = function() {
@@ -1199,11 +1230,6 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.style.display = 'none';
     isLightboxOpen = false;
     document.body.style.overflow = 'auto';
-    
-    // Remove touch event listeners
-    lightbox.removeEventListener('touchstart', handleLightboxTouchStart);
-    lightbox.removeEventListener('touchmove', handleLightboxTouchMove);
-    lightbox.removeEventListener('touchend', handleLightboxTouchEnd);
   }
   
   window.changeImage = function(step) {
@@ -1216,61 +1242,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
-  }
-  
-  // Mobile swipe handling for lightbox
-  let lightboxTouchStartX = 0;
-  let lightboxTouchStartY = 0;
-  let isSwiping = false;
-  
-  function handleLightboxTouchStart(e) {
-    lightboxTouchStartX = e.touches[0].clientX;
-    lightboxTouchStartY = e.touches[0].clientY;
-    isSwiping = false;
-  }
-  
-  function handleLightboxTouchMove(e) {
-    if (!isLightboxOpen) return;
-    
-    const touchX = e.touches[0].clientX;
-    const touchY = e.touches[0].clientY;
-    const deltaX = touchX - lightboxTouchStartX;
-    const deltaY = touchY - lightboxTouchStartY;
-    
-    // Check if it's more horizontal than vertical swipe
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-      e.preventDefault();
-      isSwiping = true;
-      
-      // Add visual feedback for swipe
-      const lightboxImg = document.getElementById('lightbox-img');
-      lightboxImg.style.transform = `translate(calc(-50% + ${deltaX}px), -50%)`;
-      lightboxImg.style.opacity = Math.max(0.7, 1 - Math.abs(deltaX) / 200);
-    }
-  }
-  
-  function handleLightboxTouchEnd(e) {
-    if (!isLightboxOpen || !isSwiping) return;
-    
-    const touchEndX = e.changedTouches[0].clientX;
-    const deltaX = touchEndX - lightboxTouchStartX;
-    const swipeThreshold = 50;
-    
-    // Reset image position
-    const lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.style.transform = 'translate(-50%, -50%)';
-    lightboxImg.style.opacity = '1';
-    
-    // Determine swipe direction
-    if (Math.abs(deltaX) > swipeThreshold) {
-      if (deltaX > 0) {
-        changeImage(-1); // Swipe right - previous image
-      } else {
-        changeImage(1); // Swipe left - next image
-      }
-    }
-    
-    isSwiping = false;
   }
   
   // Button event listeners
