@@ -93,15 +93,15 @@ layout: default
     display: none !important;
   }
   
-  /* Main Layout - Full Width Design - FIXED */
+  /* Main Layout - Fixed sidebar with main content offset */
   .layout-container {
-    display: flex;
+    display: block;
     min-height: 100vh;
     width: 100%;
     background: var(--bg-primary);
   }
   
-  /* Sidebar Styles - FIXED POSITION */
+  /* Sidebar - FIXED POSITION (properly implemented) */
   .sidebar {
     background: var(--bg-secondary);
     padding: 40px 25px;
@@ -116,6 +116,7 @@ layout: default
     flex-direction: column;
     z-index: 1000;
     box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
   }
   
   .profile-container {
@@ -287,16 +288,15 @@ layout: default
   /* Main Content - Properly offset for fixed sidebar */
   .main-content {
     padding: 50px 70px;
-    width: 100%;
-    margin-left: 280px; /* This pushes content to the right of fixed sidebar */
+    width: calc(100% - 280px);
+    margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
   }
   
-  /* justified text */
+  /* Justified text */
   .main-content p,
   .main-content li,
-  .main-content blockquote,
   .talk p,
   .project p,
   .gallery-count,
@@ -306,8 +306,12 @@ layout: default
     hyphens: auto;
   }
   
-  /* Keep headings left-aligned */
-  .main-content h1,
+  /* Blockquotes should be centered/left, not justified */
+  .main-content blockquote {
+    text-align: left;
+  }
+  
+  /* Keep headings left-aligned, but exclude sidebar profile headings */
   .main-content h2, 
   .main-content h3,
   .main-content h4,
@@ -319,14 +323,24 @@ layout: default
     text-align: left;
   }
   
-  .main-content p {
-    text-align-last: left; /* Last line of paragraphs left-aligned */
-  }
-  
+  /* Profile name and title in sidebar should be centered */
+  .sidebar h1,
+  .sidebar .profile-name,
+  .sidebar .profile-title {
+    text-align: center;
+  }  
   .section {
     margin: 80px 0;
     scroll-margin-top: 40px;
     width: 100%;
+  }
+  
+  /* Center profile name and title in sidebar */
+  .profile-name,
+  .profile-title {
+    text-align: center;
+    width: 100%;
+    display: block;
   }
   
   .section:first-of-type {
@@ -617,6 +631,7 @@ layout: default
     padding: 0 15px;
     transform: translateY(-50%);
     z-index: 10001;
+    opacity: 0.8;
   }
   
   .lightbox-nav button {
@@ -634,7 +649,6 @@ layout: default
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.8;
   }
   
   .lightbox-nav button:hover {
@@ -643,10 +657,13 @@ layout: default
     opacity: 1;
   }
   
-  /* Mobile Responsive Design */
+  /* Mobile Responsive Design - MUST BE IN CORRECT ORDER (large to small) */
+  
+  /* Tablet and up (1200px and below) */
   @media (max-width: 1200px) {
     .main-content {
       padding: 40px 50px;
+      width: calc(100% - 280px);
       margin-left: 280px;
     }
     
@@ -656,28 +673,52 @@ layout: default
     }
   }
   
+  /* Tablet and Mobile - Sidebar becomes hamburger menu (992px and below) */
   @media (max-width: 992px) {
+    .hamburger-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .mobile-overlay.active {
+      display: block;
+    }
+    
     /* On tablet/mobile, remove sidebar offset */
     .main-content {
       width: 100%;
       margin-left: 0;
-      padding: 30px 25px 80px;
+      padding: 80px 25px 80px; /* Top padding accounts for hamburger button */
     }
     
     .sidebar {
       transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      width: 280px;
     }
     
     .sidebar.active {
       transform: translateX(0);
     }
+    
+    .section {
+      margin: 60px 0;
+    }
+    
+    .gallery-grid,
+    .links-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+    }
   }
   
+  /* Mobile landscape and smaller tablets (768px and below) */
   @media (max-width: 768px) {
     .main-content {
-      padding: 25px 20px 80px;
+      padding: 80px 20px 80px;
     }
     
     .section h2 {
@@ -701,8 +742,22 @@ layout: default
     .talk h3, .project h3 {
       font-size: 1.4em;
     }
+    
+    /* Lightbox adjustments for tablets */
+    .lightbox-nav button {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      padding: 0;
+    }
+    
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 75%;
+    }
   }
   
+  /* Small phones (480px and below) */
   @media (max-width: 480px) {
     .section-title {
       flex-direction: column;
@@ -729,55 +784,10 @@ layout: default
     .contact-links {
       flex-direction: column;
     }
-  }
-  
-  /* Hide arrows on touch devices, show on hover-capable devices */
-  @media (hover: none) and (pointer: coarse) {
+    
+    /* Lightbox adjustments for small phones */
     .lightbox-nav {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    /* Show arrows briefly when lightbox opens on mobile */
-    .lightbox.active .lightbox-nav {
-      opacity: 0.5;
-    }
-    
-    /* Show arrows on mobile when screen is tapped */
-    .lightbox:active .lightbox-nav {
-      opacity: 1;
-    }
-    
-    /* Smaller arrows on mobile */
-    .lightbox-nav button {
-      width: 36px;
-      height: 36px;
-      font-size: 18px;
-    }
-  }
-  
-  /* For tablets */
-  @media (max-width: 768px) {
-    .lightbox-nav button {
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      padding: 0;
-    }
-    
-    .lightbox-content {
-      max-width: 95%;
-      max-height: 75%;
-    }
-  }
-  
-  /* For very small phones */
-  @media (max-width: 480px) {
-    .lightbox-nav button {
-      width: 32px;
-      height: 32px;
-      font-size: 16px;
-      background: rgba(255, 70, 0, 0.7);
+      display: none; /* Hide arrows completely on small phones */
     }
     
     .lightbox-content {
@@ -791,6 +801,13 @@ layout: default
       font-size: 35px;
       width: 40px;
       height: 40px;
+    }
+  }
+  
+  /* Hide arrows on touch devices (this should be last) */
+  @media (hover: none) and (pointer: coarse) {
+    .lightbox-nav {
+      display: none; /* Completely hide arrows on all touch devices */
     }
   }
 </style>
