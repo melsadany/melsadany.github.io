@@ -115,6 +115,7 @@ layout: default
     display: flex;
     flex-direction: column;
     z-index: 1000;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
   }
   
   .profile-container {
@@ -283,11 +284,11 @@ layout: default
     transform: translateX(24px);
   }
   
-  /* Main Content - Full Width - FIXED */
+  /* Main Content - Properly offset for fixed sidebar */
   .main-content {
     padding: 50px 70px;
-    width: calc(100% - 280px);
-    margin-left: 280px;
+    width: 100%;
+    margin-left: 280px; /* This pushes content to the right of fixed sidebar */
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -561,7 +562,7 @@ layout: default
     box-shadow: 0 8px 20px rgba(255, 70, 0, 0.3);
   }
   
-  /* Lightbox */
+  /* Lightbox styles with improved mobile support */
   .lightbox {
     display: none;
     position: fixed;
@@ -571,20 +572,22 @@ layout: default
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.95);
+    -webkit-tap-highlight-color: transparent;
     user-select: none;
-    touch-action: manipulation;
+    touch-action: pan-y;
   }
   
   .lightbox-content {
-    max-width: 95%;
-    max-height: 85%;
+    max-width: 90%;
+    max-height: 80%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 8px;
-    border: 3px solid var(--accent);
+    border: 2px solid var(--accent);
     background: black;
+    pointer-events: none; /* Prevent image from interfering with swipe */
   }
   
   .close-lightbox {
@@ -611,33 +614,39 @@ layout: default
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 25px;
+    padding: 0 15px;
     transform: translateY(-50%);
     z-index: 10001;
   }
   
   .lightbox-nav button {
-    background: var(--accent);
+    background: rgba(255, 70, 0, 0.8);
     border: none;
     color: white;
-    font-size: 35px;
-    padding: 15px 25px;
+    font-size: 24px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
   }
   
   .lightbox-nav button:hover {
     background: var(--warm);
     transform: scale(1.1);
+    opacity: 1;
   }
   
   /* Mobile Responsive Design */
   @media (max-width: 1200px) {
     .main-content {
       padding: 40px 50px;
-      width: calc(100% - 280px);
       margin-left: 280px;
     }
     
@@ -647,12 +656,12 @@ layout: default
     }
   }
   
-  /* Tablet and Mobile - Sidebar becomes hamburger menu */
   @media (max-width: 992px) {
-    .hamburger-menu {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* On tablet/mobile, remove sidebar offset */
+    .main-content {
+      width: 100%;
+      margin-left: 0;
+      padding: 30px 25px 80px;
     }
     
     .sidebar {
@@ -663,30 +672,6 @@ layout: default
     
     .sidebar.active {
       transform: translateX(0);
-    }
-    
-    .mobile-overlay.active {
-      display: block;
-    }
-    
-    .main-content {
-      width: 100%;
-      margin-left: 0;
-      padding: 30px 25px 80px;
-    }
-    
-    .section {
-      margin: 60px 0;
-    }
-    
-    .gallery-grid,
-    .links-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-    
-    .profile-img {
-      width: 150px;
-      height: 150px;
     }
   }
   
@@ -743,6 +728,69 @@ layout: default
     
     .contact-links {
       flex-direction: column;
+    }
+  }
+  
+  /* Hide arrows on touch devices, show on hover-capable devices */
+  @media (hover: none) and (pointer: coarse) {
+    .lightbox-nav {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* Show arrows briefly when lightbox opens on mobile */
+    .lightbox.active .lightbox-nav {
+      opacity: 0.5;
+    }
+    
+    /* Show arrows on mobile when screen is tapped */
+    .lightbox:active .lightbox-nav {
+      opacity: 1;
+    }
+    
+    /* Smaller arrows on mobile */
+    .lightbox-nav button {
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+    }
+  }
+  
+  /* For tablets */
+  @media (max-width: 768px) {
+    .lightbox-nav button {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      padding: 0;
+    }
+    
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 75%;
+    }
+  }
+  
+  /* For very small phones */
+  @media (max-width: 480px) {
+    .lightbox-nav button {
+      width: 32px;
+      height: 32px;
+      font-size: 16px;
+      background: rgba(255, 70, 0, 0.7);
+    }
+    
+    .lightbox-content {
+      max-width: 98%;
+      max-height: 70%;
+    }
+    
+    .close-lightbox {
+      top: 15px;
+      right: 20px;
+      font-size: 35px;
+      width: 40px;
+      height: 40px;
     }
   }
 </style>
@@ -1213,21 +1261,33 @@ document.addEventListener('DOMContentLoaded', function() {
     galleryCount.textContent = `Showing ${currentlyVisible} of ${galleryImages.length} visualizations`;
   }
   
-  // Lightbox functions
+  // Improved lightbox functions with better mobile handling
   window.openLightbox = function(index) {
     currentImageIndex = index;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     
     lightbox.style.display = 'block';
+    lightbox.classList.add('active');
     lightboxImg.src = galleryImages[index];
     isLightboxOpen = true;
     document.body.style.overflow = 'hidden';
+    
+    // Auto-hide arrows on mobile after 2 seconds
+    if ('ontouchstart' in window) {
+      setTimeout(() => {
+        lightbox.classList.remove('active');
+      }, 2000);
+    }
+    
+    // Force focus for accessibility
+    lightbox.focus();
   }
   
   window.closeLightbox = function() {
     const lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
+    lightbox.classList.remove('active');
     isLightboxOpen = false;
     document.body.style.overflow = 'auto';
   }
@@ -1242,7 +1302,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+    
+    // Show arrows briefly when changing image on mobile
+    if ('ontouchstart' in window) {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.add('active');
+      setTimeout(() => {
+        lightbox.classList.remove('active');
+      }, 1500);
+    }
   }
+  
+  // Enhanced touch handling for swiping
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    
+    // Show arrows when touching lightbox
+    this.classList.add('active');
+  }, {passive: true});
+  
+  document.getElementById('lightbox').addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    const diffX = touchStartX - touchEndX;
+    const swipeThreshold = 50; // Minimum swipe distance
+    
+    if (Math.abs(diffX) > swipeThreshold) {
+      if (diffX > 0) {
+        // Swiped left - next image
+        changeImage(1);
+      } else {
+        // Swiped right - previous image
+        changeImage(-1);
+      }
+    }
+    
+    // Hide arrows after swipe
+    setTimeout(() => {
+      this.classList.remove('active');
+    }, 1000);
+  }, {passive: true});
   
   // Button event listeners
   showMoreBtn.addEventListener('click', loadMoreImages);
