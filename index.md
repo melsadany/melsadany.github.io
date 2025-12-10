@@ -137,12 +137,18 @@ layout: default
     font-size: 1.8em;
     color: var(--text-primary);
     margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+    display: block;
   }
   
   .profile-title {
     color: var(--accent);
     font-size: 1.1em;
     margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    display: block;
   }
   
   .contact-links {
@@ -287,7 +293,7 @@ layout: default
   /* Main Content - Properly offset for fixed sidebar */
   .main-content {
     padding: 0;
-    width: 100%;
+    width: calc(100% - 280px);
     margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
@@ -330,25 +336,11 @@ layout: default
     text-align: left;
   }
   
-  /* Profile name and title in sidebar should be centered */
-  .sidebar h1,
-  .sidebar .profile-name,
-  .sidebar .profile-title {
-    text-align: center;
-  }  
   .section {
     margin: 80px 0;
     scroll-margin-top: 40px;
     width: 100%;
-    max_width: none;
-  }
-  
-  /* Center profile name and title in sidebar */
-  .profile-name,
-  .profile-title {
-    text-align: center;
-    width: 100%;
-    display: block;
+    max-width: none; /* Fixed: changed from max_width to max-width */
   }
   
   .section:first-of-type {
@@ -682,6 +674,7 @@ layout: default
   
   /* Tablet and Mobile - Sidebar becomes hamburger menu (992px and below) */
   @media (max-width: 992px) {
+    /* Show hamburger button */
     .hamburger-menu {
       display: flex;
       align-items: center;
@@ -690,14 +683,18 @@ layout: default
       transform: translateY(-20px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
+    
     /* Show hamburger when scrolled down */
     .hamburger-menu.visible {
       opacity: 1;
       transform: translateY(0);
     }
+    
+    /* Mobile overlay for sidebar */
     .mobile-overlay.active {
       display: block;
     }
+    
     /* Sidebar visible by default on mobile */
     .sidebar {
       position: fixed;
@@ -710,67 +707,92 @@ layout: default
       padding-top: 80px; /* Make room for hamburger when it appears */
       transition: transform 0.3s ease, padding-top 0.3s ease;
     }
+    
     /* Hide sidebar when hamburger is clicked */
     .sidebar.hidden {
       transform: translateY(-100%);
     }
-    /* Main content takes full width */
+    
+    /* Main content takes full width on mobile */
     .main-content {
       width: 100%;
       margin-left: 0;
-      padding: 20px 20px 80px;
-      margin-top: 0; /* Start at top */
+      padding: 80px 20px 80px; /* Extra top padding for hamburger */
+      margin-top: 0;
     }
+    
+    /* Hide content-container padding on mobile */
+    .content-container {
+      padding: 0;
+      max-width: 100%;
+    }
+    
     /* Profile image smaller on mobile */
     .profile-img {
       width: 120px;
       height: 120px;
     }
+    
     /* Navigation visible by default */
     .nav-menu {
       display: block;
     }
+    
     /* Section adjustments */
     .section {
       margin: 60px 0;
     }
+    
     .gallery-grid,
     .links-grid {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    /* Show hamburger menu by default on mobile */
+    .hamburger-menu {
+      display: flex;
     }
   }
   
   /* Mobile landscape and smaller tablets (768px and below) */
   @media (max-width: 768px) {
     .main-content {
-      padding: 20px 15px 80px;
+      padding: 80px 15px 80px;
     }
+    
     .section h2 {
       font-size: 1.8em;
     }
+    
     .gallery-grid,
     .links-grid {
       grid-template-columns: 1fr;
       gap: 20px;
     }
+    
     .gallery-item {
       height: 250px;
     }
+    
     .talk, .project {
       padding: 25px;
     }
+    
     .talk h3, .project h3 {
       font-size: 1.4em;
     }
+    
     /* Smaller profile image on very small screens */
     .profile-img {
       width: 100px;
       height: 100px;
     }
+    
     /* Adjust sidebar padding */
     .sidebar {
       padding: 60px 20px 20px;
     }
+    
     /* Lightbox adjustments for tablets */
     .lightbox-nav button {
       width: 40px;
@@ -778,6 +800,7 @@ layout: default
       font-size: 20px;
       padding: 0;
     }
+    
     .lightbox-content {
       max-width: 95%;
       max-height: 75%;
@@ -791,45 +814,56 @@ layout: default
       align-items: flex-start;
       gap: 10px;
     }
+    
     .section-number {
       width: 35px;
       height: 35px;
       font-size: 1em;
     }
+    
     .gallery-controls {
       flex-direction: column;
       align-items: center;
     }
+    
     .gallery-btn {
       width: 100%;
       max-width: 300px;
     }
+    
     .contact-links {
       flex-direction: column;
     }
+    
     /* Even smaller profile image */
     .profile-img {
       width: 80px;
       height: 80px;
     }
+    
     /* Condense sidebar content */
     .sidebar {
       padding: 50px 15px 15px;
     }
+    
     .profile-name {
       font-size: 1.5em;
     }
+    
     .profile-title {
       font-size: 0.9em;
     }
+    
     /* Lightbox adjustments for small phones */
     .lightbox-nav {
       display: none;
     }
+    
     .lightbox-content {
       max-width: 98%;
       max-height: 70%;
     }
+    
     .close-lightbox {
       top: 15px;
       right: 20px;
@@ -852,75 +886,6 @@ layout: default
   <span>☰</span>
 </button>
 <div class="mobile-overlay" id="mobileOverlay"></div>
-
-// Show/hide hamburger based on scroll
-let lastScrollTop = 0;
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const sidebar = document.getElementById('sidebar');
-const mobileOverlay = document.getElementById('mobileOverlay');
-
-// Mobile scrolling behavior
-function handleMobileScroll() {
-  if (window.innerWidth <= 992) {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    // Show hamburger when scrolled down more than 100px
-    if (scrollTop > 100) {
-      hamburgerBtn.classList.add('visible');
-      // Auto-hide sidebar when scrolling down
-      if (scrollTop > lastScrollTop && scrollTop > 200) {
-        sidebar.classList.add('hidden');
-        mobileOverlay.classList.remove('active');
-      }
-    } else {
-      hamburgerBtn.classList.remove('visible');
-      sidebar.classList.remove('hidden');
-    }
-    lastScrollTop = scrollTop;
-  } else {
-    // Reset on desktop
-    hamburgerBtn.classList.remove('visible');
-    sidebar.classList.remove('hidden');
-  }
-}
-
-// Update hamburger menu toggle for new behavior
-if (hamburgerBtn && sidebar) {
-  hamburgerBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    sidebar.classList.toggle('hidden');
-    mobileOverlay.classList.toggle('active');
-    // Scroll to top when opening sidebar
-    if (!sidebar.classList.contains('hidden')) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  });
-  
-  mobileOverlay.addEventListener('click', function() {
-    sidebar.classList.add('hidden');
-    mobileOverlay.classList.remove('active');
-  });
-  
-  // Close sidebar when clicking on a nav link on mobile
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 992) {
-        sidebar.classList.add('hidden');
-        mobileOverlay.classList.remove('active');
-      }
-    });
-  });
-}
-
-// Add scroll event listener
-window.addEventListener('scroll', handleMobileScroll);
-window.addEventListener('resize', handleMobileScroll);
-
-// Initial check
-handleMobileScroll();
-
 
 <div class="layout-container">
   <!-- Sidebar -->
@@ -1193,106 +1158,154 @@ handleMobileScroll();
     </section>
     </div>
   </main>
+</div>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox">
-    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-nav">
-      <button onclick="changeImage(-1)">&#10094;</button>
-      <button onclick="changeImage(1)">&#10095;</button>
-    </div>
-    <img class="lightbox-content" id="lightbox-img">
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+  <div class="lightbox-nav">
+    <button onclick="changeImage(-1)">&#10094;</button>
+    <button onclick="changeImage(1)">&#10095;</button>
   </div>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
 
 <script>
-  // Theme Toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-  
-  // Set initial theme
-  let currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  themeToggle.checked = currentTheme === 'dark';
-  
-  // Toggle theme
-  themeToggle.addEventListener('change', function() {
-    const newTheme = this.checked ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Set initial theme
+let currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+document.documentElement.setAttribute('data-theme', currentTheme);
+themeToggle.checked = currentTheme === 'dark';
+
+// Toggle theme
+themeToggle.addEventListener('change', function() {
+  const newTheme = this.checked ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+});
+
+// Hamburger Menu and Scroll Behavior
+let lastScrollTop = 0;
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebar = document.getElementById('sidebar');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+// Mobile scrolling behavior
+function handleMobileScroll() {
+  if (window.innerWidth <= 992) {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Show hamburger when scrolled down more than 100px
+    if (scrollTop > 100) {
+      hamburgerBtn.classList.add('visible');
+      
+      // Auto-hide sidebar when scrolling down
+      if (scrollTop > lastScrollTop && scrollTop > 200) {
+        sidebar.classList.add('hidden');
+        mobileOverlay.classList.remove('active');
+      }
+    } else {
+      hamburgerBtn.classList.remove('visible');
+      sidebar.classList.remove('hidden');
+    }
+    
+    lastScrollTop = scrollTop;
+  } else {
+    // Reset on desktop
+    hamburgerBtn.classList.remove('visible');
+    sidebar.classList.remove('hidden');
+  }
+}
+
+// Update hamburger menu toggle for new behavior
+if (hamburgerBtn && sidebar) {
+  hamburgerBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    sidebar.classList.toggle('hidden');
+    mobileOverlay.classList.toggle('active');
+    
+    // Scroll to top when opening sidebar
+    if (!sidebar.classList.contains('hidden')) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   });
   
-  // Hamburger Menu Toggle
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const sidebar = document.getElementById('sidebar');
-  const mobileOverlay = document.getElementById('mobileOverlay');
+  mobileOverlay.addEventListener('click', function() {
+    sidebar.classList.add('hidden');
+    mobileOverlay.classList.remove('active');
+  });
   
-  if (hamburgerBtn && sidebar) {
-    hamburgerBtn.addEventListener('click', function() {
-      sidebar.classList.toggle('active');
-      mobileOverlay.classList.toggle('active');
+  // Close sidebar when clicking on a nav link on mobile
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      if (window.innerWidth <= 992) {
+        sidebar.classList.add('hidden');
+        mobileOverlay.classList.remove('active');
+      }
     });
-    mobileOverlay.addEventListener('click', function() {
-      sidebar.classList.remove('active');
-      mobileOverlay.classList.remove('active');
-    });
-    // Close sidebar when clicking on a nav link on mobile
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function() {
-        if (window.innerWidth <= 992) {
-          sidebar.classList.remove('active');
-          mobileOverlay.classList.remove('active');
-        }
-      });
-    });
-  }
-  
-  // Gallery functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const galleryImages = [
-      'assets/gallery/arch-1.png',
-      'assets/gallery/dwi.jpg',
-      'assets/gallery/nct-1.png',
-      'assets/gallery/rpoe-data.png',
-      'assets/gallery/iq-2.png',
-      'assets/gallery/wc-1.png',
-      'assets/gallery/sche-1.png',
-      'assets/gallery/sche-2.png',
-      'assets/gallery/line-2.png',
-      'assets/gallery/resid-1.png',
-      'assets/gallery/rad-1.svg',
-      'assets/gallery/ne-1.jpg',
-      'assets/images/drug-maps/overview.jpg',
-      'assets/images/te/overview-lang.jpg',
-      'assets/gallery/bar-1.png',
-      'assets/gallery/bm-v1.jpg',
-      'assets/gallery/cyto-1.jpg',
-      'assets/gallery/den-1.png',
-      'assets/gallery/den-2.png',
-      'assets/gallery/den-3.jpg',
-      'assets/gallery/euc-1.jpg',
-      'assets/gallery/fALFF-1.png',
-      'assets/gallery/forest-1.png',
-      'assets/gallery/dti-res-1.png',
-      'assets/gallery/jeo-1.png',
-      'assets/gallery/loli-1.png',
-      'assets/gallery/mo-1.png',
-      'assets/gallery/mph-1.svg',
-      'assets/gallery/net-1.png',
-      'assets/gallery/net-2.png',
-      'assets/gallery/peaks-1.jpg',
-      'assets/gallery/scat-1.png',
-      'assets/gallery/scat-2.png',
-      'assets/gallery/scat-3.png',
-      'assets/gallery/sel-1.jpg',
-      'assets/gallery/sem-1.png',
-      'assets/gallery/sem-2.jpg',
-      'assets/gallery/st.png',
-      'assets/gallery/time-1.gif',
-      'assets/gallery/time-2.png',
-      'assets/gallery/umap-1.jpg',
-      'assets/gallery/upset-1.png',
-      'assets/gallery/viol-1.png'
-    ];
+  });
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', handleMobileScroll);
+window.addEventListener('resize', handleMobileScroll);
+
+// Initial check
+handleMobileScroll();
+
+// Gallery functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const galleryImages = [
+    'assets/gallery/arch-1.png',
+    'assets/gallery/dwi.jpg',
+    'assets/gallery/nct-1.png',
+    'assets/gallery/rpoe-data.png',
+    'assets/gallery/iq-2.png',
+    'assets/gallery/wc-1.png',
+    'assets/gallery/sche-1.png',
+    'assets/gallery/sche-2.png',
+    'assets/gallery/line-2.png',
+    'assets/gallery/resid-1.png',
+    'assets/gallery/rad-1.svg',
+    'assets/gallery/ne-1.jpg',
+    'assets/images/drug-maps/overview.jpg',
+    'assets/images/te/overview-lang.jpg',
+    'assets/gallery/bar-1.png',
+    'assets/gallery/bm-v1.jpg',
+    'assets/gallery/cyto-1.jpg',
+    'assets/gallery/den-1.png',
+    'assets/gallery/den-2.png',
+    'assets/gallery/den-3.jpg',
+    'assets/gallery/euc-1.jpg',
+    'assets/gallery/fALFF-1.png',
+    'assets/gallery/forest-1.png',
+    'assets/gallery/dti-res-1.png',
+    'assets/gallery/jeo-1.png',
+    'assets/gallery/loli-1.png',
+    'assets/gallery/mo-1.png',
+    'assets/gallery/mph-1.svg',
+    'assets/gallery/net-1.png',
+    'assets/gallery/net-2.png',
+    'assets/gallery/peaks-1.jpg',
+    'assets/gallery/scat-1.png',
+    'assets/gallery/scat-2.png',
+    'assets/gallery/scat-3.png',
+    'assets/gallery/sel-1.jpg',
+    'assets/gallery/sem-1.png',
+    'assets/gallery/sem-2.jpg',
+    'assets/gallery/st.png',
+    'assets/gallery/time-1.gif',
+    'assets/gallery/time-2.png',
+    'assets/gallery/umap-1.jpg',
+    'assets/gallery/upset-1.png',
+    'assets/gallery/viol-1.png'
+  ];
   
   const galleryContainer = document.getElementById('gallery-container');
   const showMoreBtn = document.getElementById('show-more-btn');
@@ -1311,17 +1324,21 @@ handleMobileScroll();
   
   function loadMoreImages() {
     const endIndex = Math.min(currentlyVisible + imagesPerLoad, galleryImages.length);
+    
     for (let i = currentlyVisible; i < endIndex; i++) {
       const galleryItem = document.createElement('div');
       galleryItem.className = 'gallery-item';
       galleryItem.onclick = () => openLightbox(i);
+      
       const img = document.createElement('img');
       img.src = galleryImages[i];
       img.alt = 'Research Visualization';
       img.loading = 'lazy';
+      
       galleryItem.appendChild(img);
       galleryContainer.appendChild(galleryItem);
     }
+    
     currentlyVisible = endIndex;
     updateButtonVisibility();
     updateGalleryCount();
@@ -1352,17 +1369,20 @@ handleMobileScroll();
     currentImageIndex = index;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    
     lightbox.style.display = 'block';
     lightbox.classList.add('active');
     lightboxImg.src = galleryImages[index];
     isLightboxOpen = true;
     document.body.style.overflow = 'hidden';
+    
     // Auto-hide arrows on mobile after 2 seconds
     if ('ontouchstart' in window) {
       setTimeout(() => {
         lightbox.classList.remove('active');
       }, 2000);
     }
+    
     // Force focus for accessibility
     lightbox.focus();
   }
@@ -1377,12 +1397,15 @@ handleMobileScroll();
   
   window.changeImage = function(step) {
     currentImageIndex += step;
+    
     if (currentImageIndex >= galleryImages.length) {
       currentImageIndex = 0;
     } else if (currentImageIndex < 0) {
       currentImageIndex = galleryImages.length - 1;
     }
+    
     document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+    
     // Show arrows briefly when changing image on mobile
     if ('ontouchstart' in window) {
       const lightbox = document.getElementById('lightbox');
@@ -1399,6 +1422,7 @@ handleMobileScroll();
   
   document.getElementById('lightbox').addEventListener('touchstart', function(e) {
     touchStartX = e.changedTouches[0].screenX;
+    
     // Show arrows when touching lightbox
     this.classList.add('active');
   }, {passive: true});
@@ -1407,6 +1431,7 @@ handleMobileScroll();
     touchEndX = e.changedTouches[0].screenX;
     const diffX = touchStartX - touchEndX;
     const swipeThreshold = 50; // Minimum swipe distance
+    
     if (Math.abs(diffX) > swipeThreshold) {
       if (diffX > 0) {
         // Swiped left - next image
@@ -1416,6 +1441,7 @@ handleMobileScroll();
         changeImage(-1);
       }
     }
+    
     // Hide arrows after swipe
     setTimeout(() => {
       this.classList.remove('active');
@@ -1429,6 +1455,7 @@ handleMobileScroll();
   // Keyboard navigation
   document.addEventListener('keydown', function(e) {
     if (!isLightboxOpen) return;
+    
     if (e.key === 'Escape') {
       closeLightbox();
     } else if (e.key === 'ArrowLeft') {
@@ -1451,10 +1478,12 @@ handleMobileScroll();
       e.preventDefault();
       const targetId = this.getAttribute('href');
       const targetElement = document.querySelector(targetId);
+      
       if (targetElement) {
         // Update active link
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
         this.classList.add('active');
+        
         // Scroll to section
         window.scrollTo({
           top: targetElement.offsetTop - 40,
@@ -1468,10 +1497,12 @@ handleMobileScroll();
   window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('.section');
     const scrollPos = window.scrollY + 100;
+    
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
       const sectionBottom = sectionTop + section.offsetHeight;
       const sectionId = section.getAttribute('id');
+      
       if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
         document.querySelectorAll('.nav-link').forEach(link => {
           link.classList.remove('active');
@@ -1489,6 +1520,7 @@ handleMobileScroll();
     video.addEventListener('contextmenu', function(e) {
       e.preventDefault();
     });
+    
     document.addEventListener('keydown', function(e) {
       if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
         e.preventDefault();
