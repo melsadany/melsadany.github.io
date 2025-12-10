@@ -149,6 +149,9 @@ layout: default
     text-align: center;
     width: 100%;
     display: block;
+    white-space: nowrap; /* Prevents line breaks */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Shows ... if text is too long */
   }
   
   .contact-links {
@@ -293,7 +296,7 @@ layout: default
   /* Main Content - Properly offset for fixed sidebar */
   .main-content {
     padding: 0;
-    width: calc(100% - 280px);
+    width: 100%;
     margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
@@ -704,7 +707,7 @@ layout: default
       overflow-y: auto;
       transform: translateY(0);
       z-index: 1001;
-      padding-top: 80px; /* Make room for hamburger when it appears */
+      padding: 80px 25px 25px; /* Make room for hamburger when it appears */
       transition: transform 0.3s ease, padding-top 0.3s ease;
     }
     
@@ -729,8 +732,9 @@ layout: default
     
     /* Profile image smaller on mobile */
     .profile-img {
-      width: 120px;
-      height: 120px;
+      width: 180px;
+      height: 180px;
+      margin-bottom: 25px;
     }
     
     /* Navigation visible by default */
