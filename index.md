@@ -77,7 +77,8 @@ layout: default
     font-family: 'BrauerNeue', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background: var(--bg-primary);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
     min-height: 100vh;
     transition: all 0.3s ease;
   }
@@ -92,11 +93,15 @@ layout: default
     display: none !important;
   }
   
-  /* Main Layout */
+  /* Main Layout - Full Width Design */
   .layout-container {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 280px 1fr;
     min-height: 100vh;
+    max-width: 1600px; /* Increased from 1500px */
+    margin: 0 auto;
+    background: var(--bg-primary);
+    box-shadow: 0 0 40px rgba(0,0,0,0.1);
   }
   
   /* Sidebar Styles */
@@ -278,17 +283,17 @@ layout: default
     transform: translateX(24px);
   }
   
-  /* Main Content */
+  /* Main Content - Full Width */
   .main-content {
-    padding: 40px 60px;
-    max-width: 1000px;
-    margin: 0 auto;
+    padding: 50px 70px; /* Increased padding */
     width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
   .section {
     margin: 80px 0;
     scroll-margin-top: 40px;
+    max-width: 100%; /* Ensure it takes full width */
   }
   
   .section:first-of-type {
@@ -326,12 +331,13 @@ layout: default
   /* Content Cards */
   .talk, .project {
     background: var(--card-bg);
-    padding: 30px;
+    padding: 35px; /* Increased padding */
     border-radius: 12px;
-    margin: 30px 0;
+    margin: 40px 0; /* Increased margin */
     border-left: 4px solid var(--accent);
     box-shadow: 0 5px 20px var(--shadow-color);
     transition: all 0.3s ease;
+    width: 100%; /* Ensure full width */
   }
   
   .talk:hover, .project:hover {
@@ -340,42 +346,48 @@ layout: default
   }
   
   .talk h3, .project h3 {
-    font-size: 1.5em;
+    font-size: 1.6em; /* Slightly larger */
     color: var(--text-primary);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   
   .talk img, .project img {
     max-width: 100%;
     border-radius: 8px;
-    margin: 15px 0;
+    margin: 20px 0; /* Increased margin */
     border: 2px solid var(--border-color);
   }
   
   .tools {
     background: linear-gradient(135deg, var(--light) 0%, var(--tertiary) 100%);
     color: white;
-    padding: 12px 15px;
+    padding: 15px 20px; /* Increased padding */
     border-radius: 8px;
-    margin: 15px 0;
+    margin: 20px 0; /* Increased margin */
     font-style: italic;
+    font-size: 1.05em; /* Slightly larger */
   }
   
-  /* Gallery */
+  /* Gallery - Improved Layout */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Increased min size */
+    gap: 25px; /* Increased gap */
+    margin: 40px 0; /* Increased margin */
   }
   
   .gallery-item {
-    border-radius: 8px;
+    border-radius: 10px; /* Slightly larger */
     overflow: hidden;
-    box-shadow: 0 8px 20px var(--shadow-color);
+    box-shadow: 0 8px 25px var(--shadow-color); /* Increased shadow */
     transition: all 0.3s ease;
     cursor: pointer;
     background: var(--card-bg);
+    height: 320px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
   
   .gallery-item:hover {
@@ -385,41 +397,89 @@ layout: default
   
   .gallery-item img {
     width: 100%;
-    height: 300px;
-    object-fit: contain;
-    padding: 10px;
+    height: 100%;
+    object-fit: contain; /* Show full image without cropping */
+    padding: 15px; /* Increased padding */
     background: var(--bg-primary);
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Gallery Controls */
+  .gallery-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+  }
+  
+  .gallery-btn {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--warm) 100%);
+    color: white;
+    border: none;
+    padding: 14px 32px; /* Larger buttons */
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'BrauerNeue', sans-serif;
+    font-weight: 500;
+  }
+  
+  .gallery-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 70, 0, 0.3);
+    background: linear-gradient(135deg, var(--warm) 0%, var(--accent) 100%);
+  }
+  
+  .gallery-count {
+    text-align: center;
+    color: var(--text-secondary);
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 1.1em;
   }
   
   /* Links Grid */
   .links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Increased min size */
+    gap: 30px; /* Increased gap */
+    margin: 40px 0; /* Increased margin */
   }
   
   .link-card {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 25px;
+    padding: 30px; /* Increased padding */
     text-align: center;
     box-shadow: 0 5px 20px var(--shadow-color);
     transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   .link-card:hover {
     transform: translateY(-8px);
+    box-shadow: 0 15px 35px var(--shadow-color);
   }
   
   .link-card h3 {
     color: var(--text-primary);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
   }
   
   .link-card p {
     color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    flex-grow: 1;
   }
   
   .link-button {
@@ -427,51 +487,128 @@ layout: default
     background: linear-gradient(135deg, var(--primary) 0%, var(--tertiary) 100%);
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Larger button */
     border-radius: 25px;
     font-weight: 500;
     transition: all 0.3s ease;
+    font-family: 'BrauerNeue', sans-serif;
   }
   
   .link-button:hover {
     background: linear-gradient(135deg, var(--accent) 0%, var(--warm) 100%);
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 70, 0, 0.3);
   }
   
-  /* Lightbox */
+  /* Lightbox - Improved Swipe Support */
   .lightbox {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0,0,0,0.95);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
   }
   
   .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 85%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 8px;
-    border: 2px solid var(--accent);
+    border: 3px solid var(--accent);
+    background: black;
+    -webkit-user-drag: none;
+    user-drag: none;
   }
   
   .close-lightbox {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 25px;
+    right: 35px;
     color: white;
-    font-size: 40px;
+    font-size: 45px;
     cursor: pointer;
+    z-index: 10001;
+    background: var(--accent);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    transform: translateY(-50%);
+    z-index: 10001;
+  }
+  
+  .lightbox-nav button {
+    background: var(--accent);
+    border: none;
+    color: white;
+    font-size: 35px;
+    padding: 15px 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .lightbox-nav button:hover {
+    background: var(--warm);
+    transform: scale(1.1);
+  }
+  
+  /* Mobile Swipe Support */
+  @media (hover: none) and (pointer: coarse) {
+    .lightbox-nav {
+      display: none; /* Hide buttons on touch devices, rely on swipe */
+    }
+    
+    .gallery-item {
+      height: 280px; /* Smaller on mobile */
+    }
+    
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
   }
   
   /* Responsive Design */
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
+    .layout-container {
+      grid-template-columns: 250px 1fr;
+      max-width: 100%;
+    }
+    
+    .main-content {
+      padding: 40px 50px;
+    }
+    
+    .gallery-grid,
+    .links-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+  
+  @media (max-width: 992px) {
     .layout-container {
       grid-template-columns: 1fr;
     }
@@ -481,31 +618,91 @@ layout: default
       position: static;
       border-right: none;
       border-bottom: 1px solid var(--border-color);
+      padding: 30px 20px;
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
     }
     
     .main-content {
-      padding: 30px 20px;
+      padding: 30px 25px;
     }
     
     .section {
       margin: 60px 0;
     }
+    
+    .gallery-grid,
+    .links-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
   }
   
   @media (max-width: 768px) {
+    .main-content {
+      padding: 25px 20px;
+    }
+    
+    .section h2 {
+      font-size: 1.8em;
+    }
+    
     .gallery-grid,
     .links-grid {
       grid-template-columns: 1fr;
+      gap: 20px;
     }
     
+    .gallery-item {
+      height: 250px;
+    }
+    
+    .talk, .project {
+      padding: 25px;
+    }
+    
+    .talk h3, .project h3 {
+      font-size: 1.4em;
+    }
+    
+    .lightbox-nav button {
+      display: block; /* Show buttons on mobile if needed */
+      font-size: 30px;
+      padding: 12px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
     .section-title {
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
     }
     
-    .section h2 {
-      font-size: 1.8em;
+    .section-number {
+      width: 35px;
+      height: 35px;
+      font-size: 1em;
+    }
+    
+    .gallery-controls {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .gallery-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .contact-links {
+      flex-direction: column;
+    }
+    
+    .contact-link {
+      justify-content: center;
     }
   }
 </style>
@@ -523,24 +720,19 @@ layout: default
     <!-- Contact Links -->
     <div class="contact-links">
       <a href="mailto:melsadany24@gmail.com" class="contact-link">
-        <span>📧</span>
         <span>melsadany24@gmail.com</span>
       </a>
       <a href="https://www.linkedin.com/in/melsadany/" class="contact-link" target="_blank">
-        <span>💼</span>
         <span>LinkedIn Profile</span>
       </a>
       <a href="https://github.com/melsadany" class="contact-link" target="_blank">
-        <span>💻</span>
-        <span>GitHub Portfolio</span>
+        <span>GitHub</span>
       </a>
       <a href="assets/docs/profile/Elsadany-resume_111625.pdf" class="contact-link">
-        <span>📄</span>
-        <span>Download Resume</span>
+        <span>Resume</span>
       </a>
       <a href="https://orcid.org/0000-0002-1019-3905" class="contact-link" target="_blank">
-        <span>🔬</span>
-        <span>ORCiD Profile</span>
+        <span>ORCiD</span>
       </a>
     </div>
     
@@ -599,6 +791,9 @@ layout: default
   
   <!-- Main Content -->
   <main class="main-content">
+    <!-- (Your existing content sections remain exactly the same - no changes needed here) -->
+    <!-- Keep all your sections from #about to #media-links exactly as they were -->
+    
     <!-- About Me Section -->
     <section id="about" class="section">
       <div class="section-title">
@@ -745,15 +940,19 @@ layout: default
         <div class="section-number">05</div>
         <h2>Data Visualization Gallery</h2>
       </div>
-      <p>Explore my favorite data visualizations across all research projects. Click on any visualization to view it in full size.</p>
+      <p>Explore my favorite data visualizations across all research projects. Click on any visualization to view it in full size. Swipe left/right on mobile to navigate.</p>
       
       <div id="gallery-container" class="gallery-grid">
         <!-- Gallery will be populated by JavaScript -->
       </div>
       
-      <div style="text-align: center; margin-top: 30px;">
-        <button id="show-more-btn" style="background: var(--accent); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">Show More Visualizations</button>
-        <button id="show-less-btn" style="display: none; background: var(--accent); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">Show Less</button>
+      <div class="gallery-count" id="gallery-count">
+        Loading gallery...
+      </div>
+      
+      <div class="gallery-controls">
+        <button id="show-more-btn" class="gallery-btn">Show More Visualizations</button>
+        <button id="show-less-btn" class="gallery-btn" style="display: none;">Show Less</button>
       </div>
     </section>
     
@@ -815,9 +1014,9 @@ layout: default
 <!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox">
   <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-  <div style="position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; transform: translateY(-50%);">
-    <button onclick="changeImage(-1)" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">&#10094;</button>
-    <button onclick="changeImage(1)" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">&#10095;</button>
+  <div class="lightbox-nav">
+    <button onclick="changeImage(-1)">&#10094;</button>
+    <button onclick="changeImage(1)">&#10095;</button>
   </div>
   <img class="lightbox-content" id="lightbox-img">
 </div>
@@ -839,35 +1038,36 @@ themeToggle.addEventListener('change', function() {
   localStorage.setItem('theme', newTheme);
 });
 
-// Gallery functionality
+// Gallery functionality with improved mobile swipe
 document.addEventListener('DOMContentLoaded', function() {
   const galleryImages = [
     'assets/gallery/arch-1.png',
     'assets/gallery/dwi.jpg',
     'assets/gallery/nct-1.png',
+    'assets/gallery/rpoe-data.png',
+    'assets/gallery/iq-2.png',
+    'assets/gallery/wc-1.png',
+    'assets/gallery/sche-1.png',
+    'assets/gallery/sche-2.png',
+    'assets/gallery/line-2.png',
+    'assets/gallery/resid-1.png',
     'assets/gallery/rad-1.svg',
     'assets/gallery/ne-1.jpg',
-    'assets/gallery/wc-1.png',
     'assets/images/drug-maps/overview.jpg',
     'assets/images/te/overview-lang.jpg',
     'assets/gallery/bar-1.png',
     'assets/gallery/bm-v1.jpg',
     'assets/gallery/cyto-1.jpg',
-    'assets/gallery/rpoe-data.png',
     'assets/gallery/den-1.png',
     'assets/gallery/den-2.png',
     'assets/gallery/den-3.jpg',
     'assets/gallery/euc-1.jpg',
     'assets/gallery/fALFF-1.png',
     'assets/gallery/forest-1.png',
-    'assets/gallery/iq-2.png',
     'assets/gallery/dti-res-1.png',
     'assets/gallery/jeo-1.png',
     'assets/gallery/loli-1.png',
     'assets/gallery/mo-1.png',
-    'assets/gallery/line-2.png',
-    'assets/gallery/sche-1.png',
-    'assets/gallery/sche-2.png',
     'assets/gallery/mph-1.svg',
     'assets/gallery/net-1.png',
     'assets/gallery/net-2.png',
@@ -875,7 +1075,6 @@ document.addEventListener('DOMContentLoaded', function() {
     'assets/gallery/scat-1.png',
     'assets/gallery/scat-2.png',
     'assets/gallery/scat-3.png',
-    'assets/gallery/resid-1.png',
     'assets/gallery/sel-1.jpg',
     'assets/gallery/sem-1.png',
     'assets/gallery/sem-2.jpg',
@@ -890,9 +1089,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const galleryContainer = document.getElementById('gallery-container');
   const showMoreBtn = document.getElementById('show-more-btn');
   const showLessBtn = document.getElementById('show-less-btn');
+  const galleryCount = document.getElementById('gallery-count');
   let currentImageIndex = 0;
   let imagesPerLoad = 6;
   let currentlyVisible = 0;
+  let isLightboxOpen = false;
   
   // Initialize gallery
   if (galleryContainer && galleryImages.length > 0) {
@@ -908,6 +1109,10 @@ document.addEventListener('DOMContentLoaded', function() {
       galleryItem.className = 'gallery-item';
       galleryItem.onclick = () => openLightbox(i);
       
+      // Add touch events for mobile preview
+      galleryItem.addEventListener('touchstart', handleGalleryTouchStart);
+      galleryItem.addEventListener('touchend', handleGalleryTouchEnd);
+      
       const img = document.createElement('img');
       img.src = galleryImages[i];
       img.alt = 'Research Visualization';
@@ -919,6 +1124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     currentlyVisible = endIndex;
     updateButtonVisibility();
+    updateGalleryCount();
   }
   
   function showLessImages() {
@@ -930,17 +1136,45 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateButtonVisibility() {
     if (currentlyVisible >= galleryImages.length) {
       showMoreBtn.style.display = 'none';
-      showLessBtn.style.display = 'inline-block';
+      showLessBtn.style.display = 'block';
     } else {
-      showMoreBtn.style.display = 'inline-block';
+      showMoreBtn.style.display = 'block';
       showLessBtn.style.display = 'none';
     }
   }
   
-  showMoreBtn.addEventListener('click', loadMoreImages);
-  showLessBtn.addEventListener('click', showLessImages);
+  function updateGalleryCount() {
+    galleryCount.textContent = `Showing ${currentlyVisible} of ${galleryImages.length} visualizations`;
+  }
   
-  // Lightbox functions
+  // Mobile touch handling for gallery items
+  let touchStartTime = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  
+  function handleGalleryTouchStart(e) {
+    touchStartTime = Date.now();
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }
+  
+  function handleGalleryTouchEnd(e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const touchDuration = Date.now() - touchStartTime;
+    
+    // If it's a quick, short touch (not a swipe), open the lightbox
+    if (Math.abs(deltaX) < 50 && Math.abs(deltaY) < 50 && touchDuration < 300) {
+      const index = Array.from(galleryContainer.children).indexOf(e.target.closest('.gallery-item'));
+      if (index !== -1) {
+        openLightbox(index);
+      }
+    }
+  }
+  
+  // Lightbox functions with improved mobile swipe
   window.openLightbox = function(index) {
     currentImageIndex = index;
     const lightbox = document.getElementById('lightbox');
@@ -948,12 +1182,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     lightbox.style.display = 'block';
     lightboxImg.src = galleryImages[index];
+    isLightboxOpen = true;
     document.body.style.overflow = 'hidden';
+    
+    // Force focus for keyboard navigation
+    lightbox.focus();
+    
+    // Add touch event listeners for swipe navigation
+    lightbox.addEventListener('touchstart', handleLightboxTouchStart);
+    lightbox.addEventListener('touchmove', handleLightboxTouchMove);
+    lightbox.addEventListener('touchend', handleLightboxTouchEnd);
   }
   
   window.closeLightbox = function() {
-    document.getElementById('lightbox').style.display = 'none';
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+    isLightboxOpen = false;
     document.body.style.overflow = 'auto';
+    
+    // Remove touch event listeners
+    lightbox.removeEventListener('touchstart', handleLightboxTouchStart);
+    lightbox.removeEventListener('touchmove', handleLightboxTouchMove);
+    lightbox.removeEventListener('touchend', handleLightboxTouchEnd);
   }
   
   window.changeImage = function(step) {
@@ -965,23 +1215,82 @@ document.addEventListener('DOMContentLoaded', function() {
       currentImageIndex = galleryImages.length - 1;
     }
     
-    openLightbox(currentImageIndex);
+    document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
   }
+  
+  // Mobile swipe handling for lightbox
+  let lightboxTouchStartX = 0;
+  let lightboxTouchStartY = 0;
+  let isSwiping = false;
+  
+  function handleLightboxTouchStart(e) {
+    lightboxTouchStartX = e.touches[0].clientX;
+    lightboxTouchStartY = e.touches[0].clientY;
+    isSwiping = false;
+  }
+  
+  function handleLightboxTouchMove(e) {
+    if (!isLightboxOpen) return;
+    
+    const touchX = e.touches[0].clientX;
+    const touchY = e.touches[0].clientY;
+    const deltaX = touchX - lightboxTouchStartX;
+    const deltaY = touchY - lightboxTouchStartY;
+    
+    // Check if it's more horizontal than vertical swipe
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+      e.preventDefault();
+      isSwiping = true;
+      
+      // Add visual feedback for swipe
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.style.transform = `translate(calc(-50% + ${deltaX}px), -50%)`;
+      lightboxImg.style.opacity = Math.max(0.7, 1 - Math.abs(deltaX) / 200);
+    }
+  }
+  
+  function handleLightboxTouchEnd(e) {
+    if (!isLightboxOpen || !isSwiping) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchEndX - lightboxTouchStartX;
+    const swipeThreshold = 50;
+    
+    // Reset image position
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.style.transform = 'translate(-50%, -50%)';
+    lightboxImg.style.opacity = '1';
+    
+    // Determine swipe direction
+    if (Math.abs(deltaX) > swipeThreshold) {
+      if (deltaX > 0) {
+        changeImage(-1); // Swipe right - previous image
+      } else {
+        changeImage(1); // Swipe left - next image
+      }
+    }
+    
+    isSwiping = false;
+  }
+  
+  // Button event listeners
+  showMoreBtn.addEventListener('click', loadMoreImages);
+  showLessBtn.addEventListener('click', showLessImages);
   
   // Keyboard navigation
   document.addEventListener('keydown', function(e) {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox.style.display === 'block') {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
-        changeImage(-1);
-      } else if (e.key === 'ArrowRight') {
-        changeImage(1);
-      }
+    if (!isLightboxOpen) return;
+    
+    if (e.key === 'Escape') {
+      closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      changeImage(-1);
+    } else if (e.key === 'ArrowRight') {
+      changeImage(1);
     }
   });
   
+  // Close lightbox when clicking outside the image
   document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) {
       closeLightbox();
@@ -1004,6 +1313,27 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo({
           top: targetElement.offsetTop - 40,
           behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Update active nav link on scroll
+  window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('.section');
+    const scrollPos = window.scrollY + 100;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
         });
       }
     });
