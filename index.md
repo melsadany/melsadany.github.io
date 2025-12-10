@@ -288,7 +288,7 @@ layout: default
   /* Main Content - Properly offset for fixed sidebar */
   .main-content {
     padding: 50px 70px;
-    width: calc(100% - 280px);
+    width: 100%;
     margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
