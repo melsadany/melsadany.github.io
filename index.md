@@ -287,13 +287,21 @@ layout: default
   
   /* Main Content - Properly offset for fixed sidebar */
   .main-content {
-    padding: 50px 70px;
-    width: 100%;
+    padding: 0;
+    width: calc(100% - 280px);
     margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
   }
   
+  /* Add this new container for content */
+  .content-container {
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto; /* Centers the content */
+    padding: 50px 30px; /* This controls the text area padding */
+    width: 100%;
+  }
+
   /* Justified text */
   .main-content p,
   .main-content li,
@@ -333,6 +341,7 @@ layout: default
     margin: 80px 0;
     scroll-margin-top: 40px;
     width: 100%;
+    max_width: none;
   }
   
   /* Center profile name and title in sidebar */
@@ -902,6 +911,7 @@ layout: default
   
   <!-- Main Content -->
   <main class="main-content">
+    <div class="content-container">
     <!-- About Me Section -->
     <section id="about" class="section">
       <div class="section-title">
@@ -1116,18 +1126,18 @@ layout: default
         </div>
       </div>
     </section>
+    </div>
   </main>
-</div>
 
-<!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox">
-  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-  <div class="lightbox-nav">
-    <button onclick="changeImage(-1)">&#10094;</button>
-    <button onclick="changeImage(1)">&#10095;</button>
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-nav">
+      <button onclick="changeImage(-1)">&#10094;</button>
+      <button onclick="changeImage(1)">&#10095;</button>
+    </div>
+    <img class="lightbox-content" id="lightbox-img">
   </div>
-  <img class="lightbox-content" id="lightbox-img">
-</div>
 
 <script>
 // Theme Toggle
