@@ -110,6 +110,7 @@ layout: default
     left: 0;
     height: 100vh;
     width: 280px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     z-index: 1000;
@@ -148,7 +149,6 @@ layout: default
     text-align: center;
     width: 100%;
     display: block;
-    white-space: nowrap; /* Prevents line breaks */
   }
   
   .contact-links {
@@ -294,16 +294,16 @@ layout: default
   .main-content {
     padding: 0;
     width: calc(100% - 280px);
-    margin-left: 100px;
+    margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
   }
   
   /* Add this new container for content */
   .content-container {
-    max-width: 1600px; /* Adjust this value as needed */
+    max-width: 1200px; /* Adjust this value as needed */
     margin: 0 auto; /* Centers the content */
-    padding: 30px 30px; /* This controls the text area padding */
+    padding: 50px 30px; /* This controls the text area padding */
     width: 100%;
   }
 
