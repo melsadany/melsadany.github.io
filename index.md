@@ -301,6 +301,7 @@ layout: default
   
   /* Add this new container for content */
   .content-container {
+    max-width: 1200px; /* Adjust this value as needed */
     margin: 0 auto; /* Centers the content */
     padding: 50px 30px; /* This controls the text area padding */
     width: 100%;
@@ -321,6 +322,13 @@ layout: default
   /* Blockquotes should be centered/left, not justified */
   .main-content blockquote {
     text-align: left;
+  }
+  
+  /* Make emphasis tags the same size as surrounding text */
+  .main-content p em {
+    font-size: inherit;
+    font-style: italic;
+    color: inherit;
   }
   
   /* Keep headings left-aligned, but exclude sidebar profile headings */
