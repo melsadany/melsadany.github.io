@@ -294,14 +294,13 @@ layout: default
   .main-content {
     padding: 0;
     width: calc(100% - 280px);
-    margin-left: 80px;
+    margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
   }
   
   /* Add this new container for content */
   .content-container {
-    max-width: 1200px; /* Adjust this value as needed */
     margin: 0 auto; /* Centers the content */
     padding: 50px 30px; /* This controls the text area padding */
     width: 100%;
@@ -895,7 +894,7 @@ layout: default
     <div class="profile-container">
       <img src="assets/images/profile/headshot.jpg" alt="Muhammad Elsadany" class="profile-img">
       <h1 class="profile-name">Muhammad Elsadany</h1>
-      <p class="profile-title">Computational Biologist | Psychiatry Researcher</p>
+      <p class="profile-title">Computational Psychiatry Researcher</p>
     </div>
     <!-- Contact Links -->
     <div class="contact-links">
