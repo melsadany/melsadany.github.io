@@ -294,7 +294,7 @@ layout: default
   .main-content {
     padding: 0;
     width: calc(100% - 280px);
-    margin-left: 280px;
+    margin-left: 80px;
     min-height: 100vh;
     overflow-x: hidden;
   }
