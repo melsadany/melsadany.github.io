@@ -150,8 +150,6 @@ layout: default
     width: 100%;
     display: block;
     white-space: nowrap; /* Prevents line breaks */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Shows ... if text is too long */
   }
   
   .contact-links {
