@@ -915,7 +915,7 @@ layout: default
       <a href="https://github.com/melsadany" class="contact-link" target="_blank">
         <span>GitHub</span>
       </a>
-      <a href="assets/docs/profile/Elsadany-resume_111625.pdf" class="contact-link">
+      <a href="assets/docs/profile/Elsadany-resume_122825.pdf" class="contact-link">
         <span>Resume</span>
       </a>
       <a href="https://orcid.org/0000-0002-1019-3905" class="contact-link" target="_blank">
@@ -1277,6 +1277,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'assets/gallery/iq-2.png',
     'assets/gallery/wc-1.png',
     'assets/gallery/sche-1.png',
+    'assets/gallery/thesis-overview-1.jpg',
     'assets/gallery/sche-2.png',
     'assets/gallery/line-2.png',
     'assets/gallery/resid-1.png',
