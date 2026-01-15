@@ -307,16 +307,15 @@ layout: default
     width: 100%;
   }
 
-  /* Justified text */
+  /* Left-aligned text for readability */
   .main-content p,
   .main-content li,
   .talk p,
   .project p,
   .gallery-count,
   .link-card p {
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
+    text-align: left;
+    line-height: 1.7;
   }
   
   /* Blockquotes should be centered/left, not justified */
@@ -347,7 +346,7 @@ layout: default
     margin: 80px 0;
     scroll-margin-top: 40px;
     width: 100%;
-    max-width: none; /* Fixed: changed from max_width to max-width */
+    max_width: none; /* Fixed: changed from max_width to max-width */
   }
   
   .section:first-of-type {
@@ -441,6 +440,18 @@ layout: default
     border: 2px solid var(--border-color);
   }
   
+  /* Extra spacing between project cards */
+  .project + .project {
+    margin-top: 50px;
+  }
+  
+  /* Subtle styling for venue lines */
+  .talk p strong,
+  .project p strong {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+  }
+
   .tools {
     background: linear-gradient(135deg, var(--light) 0%, var(--tertiary) 100%);
     color: white;
@@ -451,6 +462,13 @@ layout: default
     font-size: 1.05em;
   }
   
+  /* Lighter tools variant for less visual weight */
+  .tools.tools-light {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+
   /* Gallery - Improved Layout */
   .gallery-grid {
     display: grid;
@@ -736,8 +754,8 @@ layout: default
     
     /* Profile image smaller on mobile */
     .profile-img {
-      width: 180px;
-      height: 180px;
+      width: 140px;
+      height: 140px;
       margin-bottom: 25px;
     }
     
@@ -839,6 +857,10 @@ layout: default
       max-width: 300px;
     }
     
+    .gallery-item {
+      height: 220px;
+    }
+    
     .contact-links {
       flex-direction: column;
     }
@@ -902,7 +924,7 @@ layout: default
     <div class="profile-container">
       <img src="assets/images/profile/headshot.jpg" alt="Muhammad Elsadany" class="profile-img">
       <h1 class="profile-name">Muhammad Elsadany</h1>
-      <p class="profile-title">Computational Psychiatry Researcher</p>
+      <p class="profile-title">Computational Genetics & Psychiatry Researcher</p>
     </div>
     <!-- Contact Links -->
     <div class="contact-links">
@@ -933,32 +955,38 @@ layout: default
           </a>
         </li>
         <li class="nav-item">
-          <a href="#video-summary" class="nav-link">
+          <a href="#code-tools" class="nav-link">
             <span class="nav-number">02</span>
+            <span>Code & Tools</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#video-summary" class="nav-link">
+            <span class="nav-number">03</span>
             <span>Video Summary</span>
           </a>
         </li>
         <li class="nav-item">
           <a href="#talks" class="nav-link">
-            <span class="nav-number">03</span>
+            <span class="nav-number">04</span>
             <span>Talks & Presentations</span>
           </a>
         </li>
         <li class="nav-item">
           <a href="#projects" class="nav-link">
-            <span class="nav-number">04</span>
+            <span class="nav-number">05</span>
             <span>Research Projects</span>
           </a>
         </li>
         <li class="nav-item">
           <a href="#gallery" class="nav-link">
-            <span class="nav-number">05</span>
+            <span class="nav-number">06</span>
             <span>Visualization Gallery</span>
           </a>
         </li>
         <li class="nav-item">
           <a href="#media-links" class="nav-link">
-            <span class="nav-number">06</span>
+            <span class="nav-number">07</span>
             <span>Media & Links</span>
           </a>
         </li>
@@ -977,11 +1005,25 @@ layout: default
   <!-- Main Content -->
   <main class="main-content">
     <div class="content-container">
+    <div style="margin-bottom: 30px; text-align: right;">
+      <a href="assets/docs/profile/Elsadany-resume_122825.pdf" class="link-button" target="_blank">
+        Download Resume (PDF)
+      </a>
+    </div>
     <!-- About Me Section -->
     <section id="about" class="section">
       <div class="section-title">
         <div class="section-number">01</div>
         <h2>About Me</h2>
+      </div>
+      <!-- Snapshot / TL;DR -->
+      <div class="tools">
+        <strong>Snapshot:</strong>
+        <ul>
+          <li>PhD candidate in Computational Genetics (University of Iowa), affiliated with Psychiatry.</li>
+          <li>Work with large-scale genetics, clinical/EHR-like data, NLP, neuroimaging, and multimodal pipelines.</li>
+          <li>Interested in roles in clinical informatics, computational genomics, and data science in mental health.</li>
+        </ul>
       </div>
       <p>My passion for genetics and mental health research stems from both personal experience and a deep curiosity about human behavior. As an autistic researcher, I bring a unique perspective to understanding neurodiversity—not just as a subject of study, but as a lived reality.</p>
       <p>My research focuses on decoding the complex relationships between genetics, cognition, and mental health through computational approaches. I integrate diverse data modalities—genetic, clinical, neuroimaging, audio, interview, and facial imagery—to uncover patterns that bridge scientific discovery with practical interventions.</p>
@@ -991,11 +1033,45 @@ layout: default
         "I learn by going where I have to go." – Theodore Roethke
       </blockquote>
       <p><em>Currently pursuing my PhD in Computational Genetics at the University of Iowa, where I'm expanding my expertise in linguistics, computer vision, neuroimaging, and data science to better serve the neurodiversity community.</em></p>
+      <!-- What I'm Looking For -->
+      <div class="tools" style="margin-top: 25px;">
+        <strong>What I'm looking for:</strong>
+        <ul>
+          <li>Clinical informatics / health data science roles (especially in psychiatry, neurology, or genomics).</li>
+          <li>Computational genetics / statistical genetics positions working with large-scale cohorts.</li>
+          <li>Data science roles in industry or research institutes.</li>
+        </ul>
+      </div>
+    </section>
+    <!-- Code & Tools Section -->
+    <section id="code-tools" class="section">
+      <div class="section-title">
+        <div class="section-number">02</div>
+        <h2>Code & Tools</h2>
+      </div>
+      <p>Below are selected repositories that showcase my work in multimodal analysis, neuroimaging pipelines, and language-based mental health research.</p>
+      <div class="links-grid">
+        <div class="link-card">
+          <h3>7T Structural MRI Processing</h3>
+          <p>Reproducible pipeline for structural MRI at 7T, including cortical reconstruction, segmentation, and QC reports.</p>
+          <a href="https://github.com/melsadany/pipelines/blob/main/MRI/anat/src/01_T1-all-trials.sh" class="link-button" target="_blank">View Code</a>
+        </div>
+        <div class="link-card">
+          <h3>Brain Multi-Omics Analysis</h3>
+          <p>Reproducible pipeline to process, QC, analyze, and visualize sn-multi-omics data.</p>
+          <a href="https://github.com/melsadany/The-gene-expression-signature-of-electrical-stimulation-in-the-human-brain" class="link-button" target="_blank">View Code</a>
+        </div>
+        <div class="link-card">
+          <h3>Drug Response Genomic Toolkit</h3>
+          <p>Scripts for integrating GWAS, eQTL, and expression data to build polygenic drug response signatures for psychiatric disorders.</p>
+          <a href="https://github.com/melsadany/drug-response" class="link-button" target="_blank">View Code</a>
+        </div>
+      </div>
     </section>
     <!-- Video Summary Section -->
     <section id="video-summary" class="section">
       <div class="section-title">
-        <div class="section-number">02</div>
+        <div class="section-number">03</div>
         <h2>Video Summary</h2>
       </div>
       <p>For a quick overview of my research and background, watch this video summary created by NotebookLM:</p>
@@ -1176,6 +1252,7 @@ layout: default
     <button onclick="changeImage(1)">&#10095;</button>
   </div>
   <img class="lightbox-content" id="lightbox-img">
+  <div id="lightbox-caption" style="color: white; text-align: center; margin-top: 10px; font-size: 0.9em;"></div>
 </div>
 
 <script>
@@ -1338,7 +1415,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const galleryItem = document.createElement('div');
       galleryItem.className = 'gallery-item';
       galleryItem.onclick = () => openLightbox(i);
-      
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      if (lightboxCaption) {
+        lightboxCaption.textContent = `Visualization ${i + 1} of ${galleryImages.length}`;
+      };
       const img = document.createElement('img');
       img.src = galleryImages[i];
       img.alt = 'Research Visualization';
