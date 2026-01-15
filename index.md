@@ -1092,7 +1092,7 @@ layout: default
     <!-- Talks Section -->
     <section id="talks" class="section">
       <div class="section-title">
-        <div class="section-number">03</div>
+        <div class="section-number">04</div>
         <h2>Selected Talks & Presentations</h2>
       </div>
       <div class="talk">
@@ -1117,7 +1117,7 @@ layout: default
     <!-- Projects Section -->
     <section id="projects" class="section">
       <div class="section-title">
-        <div class="section-number">04</div>
+        <div class="section-number">05</div>
         <h2>Featured Projects</h2>
       </div>
       <div class="project">
@@ -1180,7 +1180,7 @@ layout: default
     <!-- Gallery Section -->
     <section id="gallery" class="section">
       <div class="section-title">
-        <div class="section-number">05</div>
+        <div class="section-number">06</div>
         <h2>Data Visualization Gallery</h2>
       </div>
       <p>Explore my favorite data visualizations across all research projects. Click on any visualization to view it in full size. Swipe left/right on mobile to navigate.</p>
@@ -1198,7 +1198,7 @@ layout: default
     <!-- Media & Links Section -->
     <section id="media-links" class="section">
       <div class="section-title">
-        <div class="section-number">06</div>
+        <div class="section-number">07</div>
         <h2>Media & Additional Links</h2>
       </div>
       <p>Explore more about my background, research environment, and contributions:</p>
