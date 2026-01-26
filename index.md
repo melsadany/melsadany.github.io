@@ -1155,7 +1155,7 @@ layout: default
       </div>
       <div class="project">
         <h3>Mapping Brain-Wide Drug Effects using Deep Learning</h3>
-        <img src="assets/images/drug-maps/overview2.jpg" alt="Drug Effects Brain Map">
+        <img src="assets/images/drug-maps/app-view.png" alt="Drug Effects Brain Map">
         <ul>
           <li>Built a deep learning model that integrates brain-wide gene expression (Allen Institute) and fMRI trait maps with drug perturbation signatures (CMAP, LINCS) to predict functional brain activity changes for 838 compounds.</li>
           <li>Delivered insights through an interactive R Shiny application featuring 3D brain visualizations, linking compounds to phenotypic effects via Neurosynth and Neuromaps.</li>
