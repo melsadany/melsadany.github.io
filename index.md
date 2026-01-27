@@ -290,16 +290,18 @@ layout: default
   
   /* Main Content */
   .main-content {
+    padding: 0;
     width: calc(100% - 280px);
-    margin-left: 0;
+    margin-left: 280px;
     min-height: 100vh;
     overflow-x: hidden;
   }
   
   .content-container {
-    max-width: none;
-    margin: 0;
-    padding: 50px 60px;
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto; /* Centers the content */
+    padding: 50px 30px; /* This controls the text area padding */
+    width: 100%;
   }
   
   /* Hero Statement - NEW */
