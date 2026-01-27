@@ -291,7 +291,7 @@ layout: default
   /* Main Content */
   .main-content {
     width: calc(100% - 280px);
-    margin-left: 280px;
+    margin-left: 0;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -736,7 +736,7 @@ layout: default
     font-size: 0.9em;
     margin-top: 80px;
     width: calc(100% - 280px);
-    margin-left: 280px;
+    margin-left: 0;
   }
   
   footer p {
@@ -807,13 +807,27 @@ layout: default
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
     
+    
     .hero-statement {
-      padding: 30px;
-      margin-bottom: 40px;
+      background: transparent;
+      color: var(--text-primary);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 50px;
+      box-shadow: none;
     }
     
     .hero-statement h2 {
-      font-size: 1.6em;
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+    
+    .hero-statement p {
+      font-size: 1.1em;
+      line-height: 1.7;
+      margin: 0;
+      color: var(--text-secondary);
     }
   }
   
