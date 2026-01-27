@@ -1330,8 +1330,8 @@ document.querySelectorAll('.nav-link').forEach(link => {
     
     // Close sidebar on mobile when clicking a link
     if (window.innerWidth <= 992) {
-      document.getElementById('sidebar').classList.add('hidden');
-      document.getElementById('mobileOverlay').classList.remove('active');
+      sidebar.classList.add('hidden');
+      mobileOverlay.classList.remove('active');
     }
   });
 });
@@ -1464,7 +1464,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (maxItemsShown >= galleryImages.length) {
         maxItemsShown = galleryImages.length;
         showMoreBtn.style.display = 'none';
-        }
+      }
       showLessBtn.style.display = 'inline-block';
       populateGallery();
     });
@@ -1476,9 +1476,8 @@ document.addEventListener('DOMContentLoaded', function() {
       showMoreBtn.style.display = 'inline-block';
       showLessBtn.style.display = 'none';
       populateGallery();
-      // Scroll to gallery section
       document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
-      });
+    });
   }
 
   // Populate gallery on load
@@ -1502,3 +1501,4 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') closeLightbox();
   }
 });
+</script>
