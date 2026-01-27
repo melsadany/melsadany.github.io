@@ -1330,8 +1330,8 @@ document.querySelectorAll('.nav-link').forEach(link => {
     
     // Close sidebar on mobile when clicking a link
     if (window.innerWidth <= 992) {
-      document.getElementById('sidebar').classList.add('hidden');
-      document.getElementById('mobileOverlay').classList.remove('active');
+      sidebar.classList.add('hidden');
+      mobileOverlay.classList.remove('active');
     }
   });
 });
@@ -1344,8 +1344,14 @@ const mobileOverlay = document.getElementById('mobileOverlay');
 if (hamburgerBtn) {
   hamburgerBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    sidebar.classList.toggle('hidden');
-    mobileOverlay.classList.toggle('active');
+    const isHidden = sidebar.classList.contains('hidden');
+    if (isHidden) {
+      sidebar.classList.remove('hidden');
+      mobileOverlay.classList.add('active');
+    } else {
+      sidebar.classList.add('hidden');
+      mobileOverlay.classList.remove('active');
+    }
   });
   
   mobileOverlay.addEventListener('click', function() {
@@ -1416,7 +1422,7 @@ function populateGallery() {
 
 function updateGalleryCount() {
   const count = document.getElementById('gallery-count');
-  count.textContent = Showing ${Math.min(maxItemsShown, galleryImages.length)} of ${galleryImages.length} visualizations;
+  count.textContent = `Showing ${Math.min(maxItemsShown, galleryImages.length)} of ${galleryImages.length} visualizations`;
 }
 
 // Lightbox functions
@@ -1458,7 +1464,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (maxItemsShown >= galleryImages.length) {
         maxItemsShown = galleryImages.length;
         showMoreBtn.style.display = 'none';
-        }
+      }
       showLessBtn.style.display = 'inline-block';
       populateGallery();
     });
@@ -1470,9 +1476,8 @@ document.addEventListener('DOMContentLoaded', function() {
       showMoreBtn.style.display = 'inline-block';
       showLessBtn.style.display = 'none';
       populateGallery();
-      // Scroll to gallery section
       document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
-      });
+    });
   }
 
   // Populate gallery on load
@@ -1496,3 +1501,4 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') closeLightbox();
   }
 });
+</script>
