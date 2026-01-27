@@ -297,9 +297,9 @@ layout: default
   }
   
   .content-container {
-    max-width: 1300px;
+    max-width: none;
+    margin: 0 auto;
     padding: 50px 60px;
-    
   }
   
   /* Hero Statement - NEW */
@@ -735,6 +735,8 @@ layout: default
     color: var(--text-secondary);
     font-size: 0.9em;
     margin-top: 80px;
+    width: calc(100% - 280px);
+    margin-left: 280px;
   }
   
   footer p {
