@@ -1404,7 +1404,12 @@ function populateGallery() {
   const container = document.getElementById('gallery-container');
   const itemsToShow = galleryImages.slice(0, maxItemsShown);
   
-  container.innerHTML = itemsToShow.map((img, index) => <div class="gallery-item" onclick="openLightbox(${index})"> <img src="${img.src}" alt="${img.caption}" onerror="this.style.display='none'"> <div class="gallery-caption">${img.caption}</div> </div> ).join('');
+  container.innerHTML = itemsToShow.map((img, index) => {
+    return `<div class="gallery-item" onclick="openLightbox(${index})">
+              <img src="${img.src}" alt="${img.caption}" onerror="this.style.display='none'">
+              <div class="gallery-caption">${img.caption}</div>
+            </div>`;
+  }).join('');
   
   updateGalleryCount();
 }
