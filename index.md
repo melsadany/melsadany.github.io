@@ -1344,8 +1344,14 @@ const mobileOverlay = document.getElementById('mobileOverlay');
 if (hamburgerBtn) {
   hamburgerBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    sidebar.classList.toggle('hidden');
-    mobileOverlay.classList.toggle('active');
+    const isHidden = sidebar.classList.contains('hidden');
+    if (isHidden) {
+      sidebar.classList.remove('hidden');
+      mobileOverlay.classList.add('active');
+    } else {
+      sidebar.classList.add('hidden');
+      mobileOverlay.classList.remove('active');
+    }
   });
   
   mobileOverlay.addEventListener('click', function() {
@@ -1416,7 +1422,7 @@ function populateGallery() {
 
 function updateGalleryCount() {
   const count = document.getElementById('gallery-count');
-  count.textContent = Showing ${Math.min(maxItemsShown, galleryImages.length)} of ${galleryImages.length} visualizations;
+  count.textContent = `Showing ${Math.min(maxItemsShown, galleryImages.length)} of ${galleryImages.length} visualizations`;
 }
 
 // Lightbox functions
