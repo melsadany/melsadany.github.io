@@ -298,9 +298,8 @@ layout: default
   
   .content-container {
     max-width: 1300px;
-    margin: 0 auto;
     padding: 50px 60px;
-    width: 100%;
+    
   }
   
   /* Hero Statement - NEW */
