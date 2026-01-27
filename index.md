@@ -292,7 +292,7 @@ layout: default
   .main-content {
     padding: 0;
     width: calc(100% - 280px);
-    margin-left: 280px;
+    margin-left: 200px;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -1352,53 +1352,52 @@ if (hamburgerBtn) {
   });
 }
 
-// Gallery functionality (keeping your existing gallery code)
 // Gallery images array
 const galleryImages = [
-{ src: 'assets/gallery/arch-1.png', caption: 'Architecture Diagram' },
-{ src: 'assets/gallery/dwi.jpg', caption: 'DTI Visualization' },
-{ src: 'assets/gallery/nct-1.png', caption: 'Network Analysis' },
-{ src: 'assets/gallery/rpoe-data.png', caption: 'RPOE Data' },
-{ src: 'assets/gallery/iq-2.png', caption: 'IQ Distribution' },
-{ src: 'assets/gallery/wc-1.png', caption: 'Word Cloud' },
-{ src: 'assets/gallery/sche-1.png', caption: 'Schema Diagram' },
-{ src: 'assets/gallery/thesis-overview-1.jpg', caption: 'Thesis Overview' },
-{ src: 'assets/gallery/sche-2.png', caption: 'Processing Schema' },
-{ src: 'assets/gallery/line-2.png', caption: 'Time Series' },
-{ src: 'assets/gallery/resid-1.png', caption: 'Residual Analysis' },
-{ src: 'assets/gallery/rad-1.svg', caption: 'Radial Plot' },
-{ src: 'assets/gallery/ne-1.jpg', caption: 'Network Connectivity' },
-{ src: 'assets/images/drug-maps/overview.jpg', caption: 'Drug Response Map' },
-{ src: 'assets/images/te/overview-lang.jpg', caption: 'Language Analysis' },
-{ src: 'assets/gallery/bar-1.png', caption: 'Bar Chart' },
-{ src: 'assets/gallery/bm-v1.jpg', caption: 'Brain Map' },
-{ src: 'assets/gallery/cyto-1.jpg', caption: 'Cell Type Analysis' },
-{ src: 'assets/gallery/den-1.png', caption: 'Density Plot' },
-{ src: 'assets/gallery/den-2.png', caption: 'Density Distribution' },
-{ src: 'assets/gallery/den-3.jpg', caption: 'Density Heatmap' },
-{ src: 'assets/gallery/euc-1.jpg', caption: 'Euclidean Distance' },
-{ src: 'assets/gallery/fALFF-1.png', caption: 'fALFF Map' },
-{ src: 'assets/gallery/forest-1.png', caption: 'Forest Plot' },
-{ src: 'assets/gallery/dti-res-1.png', caption: 'DTI Results' },
-{ src: 'assets/gallery/jeo-1.png', caption: 'Jeopardy Plot' },
-{ src: 'assets/gallery/loli-1.png', caption: 'Lollipop Chart' },
-{ src: 'assets/gallery/mo-1.png', caption: 'Morphometry' },
-{ src: 'assets/gallery/mph-1.svg', caption: 'Morphological Analysis' },
-{ src: 'assets/gallery/net-1.png', caption: 'Network 1' },
-{ src: 'assets/gallery/net-2.png', caption: 'Network 2' },
-{ src: 'assets/gallery/peaks-1.jpg', caption: 'Peak Detection' },
-{ src: 'assets/gallery/scat-1.png', caption: 'Scatter Plot 1' },
-{ src: 'assets/gallery/scat-2.png', caption: 'Scatter Plot 2' },
-{ src: 'assets/gallery/scat-3.png', caption: 'Scatter Plot 3' },
-{ src: 'assets/gallery/sel-1.jpg', caption: 'Selection Analysis' },
-{ src: 'assets/gallery/sem-1.png', caption: 'SEM Path Diagram' },
-{ src: 'assets/gallery/sem-2.jpg', caption: 'SEM Results' },
-{ src: 'assets/gallery/st.png', caption: 'Statistical Summary' },
-{ src: 'assets/gallery/time-1.gif', caption: 'Time Series Animation' },
-{ src: 'assets/gallery/time-2.png', caption: 'Temporal Pattern' },
-{ src: 'assets/gallery/umap-1.jpg', caption: 'UMAP Embedding' },
-{ src: 'assets/gallery/upset-1.png', caption: 'UpSet Plot' },
-{ src: 'assets/gallery/viol-1.png', caption: 'Violin Plot' }
+  { src: 'assets/gallery/arch-1.png', caption: 'Architecture Diagram' },
+  { src: 'assets/gallery/dwi.jpg', caption: 'DTI Visualization' },
+  { src: 'assets/gallery/nct-1.png', caption: 'Network Analysis' },
+  { src: 'assets/gallery/rpoe-data.png', caption: 'RPOE Data' },
+  { src: 'assets/gallery/iq-2.png', caption: 'IQ Distribution' },
+  { src: 'assets/gallery/wc-1.png', caption: 'Word Cloud' },
+  { src: 'assets/gallery/sche-1.png', caption: 'Schema Diagram' },
+  { src: 'assets/gallery/thesis-overview-1.jpg', caption: 'Thesis Overview' },
+  { src: 'assets/gallery/sche-2.png', caption: 'Processing Schema' },
+  { src: 'assets/gallery/line-2.png', caption: 'Time Series' },
+  { src: 'assets/gallery/resid-1.png', caption: 'Residual Analysis' },
+  { src: 'assets/gallery/rad-1.svg', caption: 'Radial Plot' },
+  { src: 'assets/gallery/ne-1.jpg', caption: 'Network Connectivity' },
+  { src: 'assets/images/drug-maps/overview.jpg', caption: 'Drug Response Map' },
+  { src: 'assets/images/te/overview-lang.jpg', caption: 'Language Analysis' },
+  { src: 'assets/gallery/bar-1.png', caption: 'Bar Chart' },
+  { src: 'assets/gallery/bm-v1.jpg', caption: 'Brain Map' },
+  { src: 'assets/gallery/cyto-1.jpg', caption: 'Cell Type Analysis' },
+  { src: 'assets/gallery/den-1.png', caption: 'Density Plot' },
+  { src: 'assets/gallery/den-2.png', caption: 'Density Distribution' },
+  { src: 'assets/gallery/den-3.jpg', caption: 'Density Heatmap' },
+  { src: 'assets/gallery/euc-1.jpg', caption: 'Euclidean Distance' },
+  { src: 'assets/gallery/fALFF-1.png', caption: 'fALFF Map' },
+  { src: 'assets/gallery/forest-1.png', caption: 'Forest Plot' },
+  { src: 'assets/gallery/dti-res-1.png', caption: 'DTI Results' },
+  { src: 'assets/gallery/jeo-1.png', caption: 'Jeopardy Plot' },
+  { src: 'assets/gallery/loli-1.png', caption: 'Lollipop Chart' },
+  { src: 'assets/gallery/mo-1.png', caption: 'Morphometry' },
+  { src: 'assets/gallery/mph-1.svg', caption: 'Morphological Analysis' },
+  { src: 'assets/gallery/net-1.png', caption: 'Network 1' },
+  { src: 'assets/gallery/net-2.png', caption: 'Network 2' },
+  { src: 'assets/gallery/peaks-1.jpg', caption: 'Peak Detection' },
+  { src: 'assets/gallery/scat-1.png', caption: 'Scatter Plot 1' },
+  { src: 'assets/gallery/scat-2.png', caption: 'Scatter Plot 2' },
+  { src: 'assets/gallery/scat-3.png', caption: 'Scatter Plot 3' },
+  { src: 'assets/gallery/sel-1.jpg', caption: 'Selection Analysis' },
+  { src: 'assets/gallery/sem-1.png', caption: 'SEM Path Diagram' },
+  { src: 'assets/gallery/sem-2.jpg', caption: 'SEM Results' },
+  { src: 'assets/gallery/st.png', caption: 'Statistical Summary' },
+  { src: 'assets/gallery/time-1.gif', caption: 'Time Series Animation' },
+  { src: 'assets/gallery/time-2.png', caption: 'Temporal Pattern' },
+  { src: 'assets/gallery/umap-1.jpg', caption: 'UMAP Embedding' },
+  { src: 'assets/gallery/upset-1.png', caption: 'UpSet Plot' },
+  { src: 'assets/gallery/viol-1.png', caption: 'Violin Plot' }
 ];
 
 let currentGalleryIndex = 0;
@@ -1407,93 +1406,93 @@ let maxItemsShown = itemsPerPage;
 
 // Populate gallery on page load
 function populateGallery() {
-const container = document.getElementById('gallery-container');
-const itemsToShow = galleryImages.slice(0, maxItemsShown);
-
-container.innerHTML = itemsToShow.map((img, index) => <div class="gallery-item" onclick="openLightbox(${index})"> <img src="${img.src}" alt="${img.caption}" onerror="this.style.display='none'"> <div class="gallery-caption">${img.caption}</div> </div> ).join('');
-
-updateGalleryCount();
+  const container = document.getElementById('gallery-container');
+  const itemsToShow = galleryImages.slice(0, maxItemsShown);
+  
+  container.innerHTML = itemsToShow.map((img, index) => <div class="gallery-item" onclick="openLightbox(${index})"> <img src="${img.src}" alt="${img.caption}" onerror="this.style.display='none'"> <div class="gallery-caption">${img.caption}</div> </div> ).join('');
+  
+  updateGalleryCount();
 }
 
 function updateGalleryCount() {
-const count = document.getElementById('gallery-count');
-count.textContent = Showing ${Math.min(maxItemsShown, galleryImages.length)} of ${galleryImages.length} visualizations;
+  const count = document.getElementById('gallery-count');
+  count.textContent = Showing ${Math.min(maxItemsShown, galleryImages.length)} of ${galleryImages.length} visualizations;
 }
 
 // Lightbox functions
 function openLightbox(index) {
-currentGalleryIndex = index;
-const lightbox = document.getElementById('lightbox');
-const img = document.getElementById('lightbox-img');
-const caption = document.getElementById('lightbox-caption');
-
-img.src = galleryImages[index].src;
-if (!caption) {
-const captionDiv = document.createElement('div');
-captionDiv.id = 'lightbox-caption';
-captionDiv.style.cssText = 'color: white; text-align: center; margin-top: 10px; font-size: 0.9em;';
-lightbox.appendChild(captionDiv);
-}
-document.getElementById('lightbox-caption').textContent = galleryImages[index].caption;
-
-lightbox.style.display = 'block';
+  currentGalleryIndex = index;
+  const lightbox = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const caption = document.getElementById('lightbox-caption');
+  
+  img.src = galleryImages[index].src;
+  if (!caption) {
+    const captionDiv = document.createElement('div');
+    captionDiv.id = 'lightbox-caption';
+    captionDiv.style.cssText = 'color: white; text-align: center; margin-top: 10px; font-size: 0.9em;';
+    lightbox.appendChild(captionDiv);
+  }
+  document.getElementById('lightbox-caption').textContent = galleryImages[index].caption;
+  
+  lightbox.style.display = 'block';
 }
 
 function closeLightbox() {
-document.getElementById('lightbox').style.display = 'none';
+  document.getElementById('lightbox').style.display = 'none';
 }
 
 function changeImage(direction) {
-currentGalleryIndex = (currentGalleryIndex + direction + galleryImages.length) % galleryImages.length;
-openLightbox(currentGalleryIndex);
+  currentGalleryIndex = (currentGalleryIndex + direction + galleryImages.length) % galleryImages.length;
+  openLightbox(currentGalleryIndex);
 }
 
 // Show/Hide more images
 document.addEventListener('DOMContentLoaded', function() {
-const showMoreBtn = document.getElementById('show-more-btn');
-const showLessBtn = document.getElementById('show-less-btn');
+  const showMoreBtn = document.getElementById('show-more-btn');
+  const showLessBtn = document.getElementById('show-less-btn');
+  
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', function() {
+      maxItemsShown += itemsPerPage;
+      if (maxItemsShown >= galleryImages.length) {
+        maxItemsShown = galleryImages.length;
+        showMoreBtn.style.display = 'none';
+        }
+      showLessBtn.style.display = 'inline-block';
+      populateGallery();
+    });
+  }
+  
+  if (showLessBtn) {
+    showLessBtn.addEventListener('click', function() {
+      maxItemsShown = itemsPerPage;
+      showMoreBtn.style.display = 'inline-block';
+      showLessBtn.style.display = 'none';
+      populateGallery();
+      // Scroll to gallery section
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+      });
+  }
 
-if (showMoreBtn) {
-showMoreBtn.addEventListener('click', function() {
-maxItemsShown += itemsPerPage;
-if (maxItemsShown >= galleryImages.length) {
-maxItemsShown = galleryImages.length;
-showMoreBtn.style.display = 'none';
-}
-showLessBtn.style.display = 'inline-block';
-populateGallery();
-});
-}
-
-if (showLessBtn) {
-showLessBtn.addEventListener('click', function() {
-maxItemsShown = itemsPerPage;
-showMoreBtn.style.display = 'inline-block';
-showLessBtn.style.display = 'none';
-populateGallery();
-// Scroll to gallery section
-document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
-});
-}
-
-// Populate gallery on load
-populateGallery();
+  // Populate gallery on load
+  populateGallery();
 });
 
 // Close lightbox when clicking outside the image
 document.addEventListener('click', function(event) {
-const lightbox = document.getElementById('lightbox');
-if (event.target === lightbox) {
-closeLightbox();
-}
+  const lightbox = document.getElementById('lightbox');
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
 });
 
 // Keyboard navigation for lightbox
 document.addEventListener('keydown', function(event) {
-const lightbox = document.getElementById('lightbox');
-if (lightbox.style.display === 'block') {
-if (event.key === 'ArrowLeft') changeImage(-1);
-if (event.key === 'ArrowRight') changeImage(1);
-if (event.key === 'Escape') closeLightbox();
-}
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox.style.display === 'block') {
+    if (event.key === 'ArrowLeft') changeImage(-1);
+    if (event.key === 'ArrowRight') changeImage(1);
+    if (event.key === 'Escape') closeLightbox();
+  }
 });
