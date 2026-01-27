@@ -306,23 +306,25 @@ layout: default
   
   /* Hero Statement - NEW */
   .hero-statement {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
-    color: white;
-    padding: 40px;
-    border-radius: 12px;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 30px var(--shadow-color);
+      background: transparent;
+      color: var(--text-primary);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 50px;
+      box-shadow: none;
   }
-  
+    
   .hero-statement h2 {
     font-size: 2em;
     margin-bottom: 15px;
+    color: var(--accent);
   }
-  
+    
   .hero-statement p {
     font-size: 1.1em;
     line-height: 1.7;
     margin: 0;
+    color: var(--text-secondary);
   }
   
   /* Text alignment and readability */
@@ -737,8 +739,6 @@ layout: default
     color: var(--text-secondary);
     font-size: 0.9em;
     margin-top: 80px;
-    width: calc(100% - 280px);
-    margin-left: 0;
   }
   
   footer p {
@@ -811,25 +811,12 @@ layout: default
     
     
     .hero-statement {
-      background: transparent;
-      color: var(--text-primary);
-      padding: 40px;
-      border-radius: 12px;
-      margin-bottom: 50px;
-      box-shadow: none;
+      padding: 30px;
+      margin-bottom: 40px;
     }
     
     .hero-statement h2 {
-      font-size: 2em;
-      margin-bottom: 15px;
-      color: var(--accent);
-    }
-    
-    .hero-statement p {
-      font-size: 1.1em;
-      line-height: 1.7;
-      margin: 0;
-      color: var(--text-secondary);
+      font-size: 1.6em;
     }
   }
   
