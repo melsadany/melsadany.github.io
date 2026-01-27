@@ -776,7 +776,7 @@ layout: default
       height: auto;
       max-height: 100vh;
       overflow-y: auto;
-      transform: translateY(0);
+      transform: translateY(-100%);
       z-index: 1001;
       padding: 80px 25px 25px;
       transition: transform 0.3s ease;
