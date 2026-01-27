@@ -298,7 +298,7 @@ layout: default
   
   .content-container {
     max-width: none;
-    margin: 0 auto;
+    margin: 0;
     padding: 50px 60px;
   }
   
