@@ -959,8 +959,8 @@ layout: default
     <div class="profile-container">
       <img src="assets/images/profile/headshot.jpg" alt="Muhammad Elsadany" class="profile-img">
       <h1 class="profile-name">Muhammad Elsadany</h1>
-      <p class="profile-title">PhD Candidate, Computational Genetics</p>
-      <p class="profile-role">University of Iowa | Psychiatry Department</p>
+      <p class="profile-title">Associate Manager, Clinical Informatics</p>
+      <p class="profile-role">Regeneron Genetics Center | Tarrytown, NY</p>
     </div>
     
     <div class="contact-links">
@@ -1036,10 +1036,10 @@ layout: default
   <main class="main-content">
     <div class="content-container">
       
-      <!-- Hero Statement - NEW -->
+      <!-- Hero Statement -->
       <div class="hero-statement">
         <h2>Multimodal Mental Health Data Scientist</h2>
-        <p>I build computational tools that bridge genetics, neuroimaging, and behavior to unlock insights for neurodiversity and psychiatric research. Currently finishing my PhD at University of Iowa.</p>
+        <p>I build computational tools that bridge genetics, neuroimaging, and behavior to unlock insights for neurodiversity and psychiatric research. PhD in Computational Genetics, University of Iowa (2026).</p>
       </div>
       
       <div style="margin-bottom: 30px; text-align: right;">
@@ -1048,7 +1048,7 @@ layout: default
         </a>
       </div>
       
-      <!-- About Me Section - UPDATED -->
+      <!-- About Me Section -->
       <section id="about" class="section">
         <div class="section-title">
           <div class="section-number">01</div>
@@ -1060,19 +1060,17 @@ layout: default
         <p>My research integrates diverse data modalities—genetic, clinical, neuroimaging, audio, interview transcripts, and facial imagery to uncover patterns that bridge laboratory discovery with real clinical interventions.</p>
         
         <div class="callout-box">
-          <strong>What I'm looking for:</strong>
+          <strong>Currently:</strong>
           <ul>
-            <li>Clinical informatics / health data science roles in psychiatry, neurology, or genomics</li>
-            <li>Computational genetics / statistical genetics positions with large-scale cohorts</li>
-            <li>Data science roles in biotech, health tech, or research institutes</li>
-            <li>Positions that value reproducible science and open-source tools</li>
+            <li>Associate Manager, Clinical Informatics at Regeneron Genetics Center (RGC)</li>
+            <li>Building scalable tools for EHR, survey, and digital device data harmonization</li>
+            <li>Partnering with genetics, epidemiology, and drug design teams on therapeutic programs</li>
           </ul>
         </div>
         
-        <p><em>I'm wrapping up my PhD in April 2026 and actively networking. Let's chat about opportunities!</em></p>
       </section>
       
-      <!-- Expertise Section - NEW (replaces Code & Tools + condenses Projects) -->
+      <!-- Expertise Section -->
       <section id="expertise" class="section">
         <div class="section-title">
           <div class="section-number">02</div>
@@ -1115,7 +1113,7 @@ layout: default
         </div>
       </section>
       
-      <!-- Projects Section - UPDATED with outcomes -->
+      <!-- Projects Section -->
       <section id="projects" class="section">
         <div class="section-title">
           <div class="section-number">03</div>
@@ -1192,7 +1190,7 @@ layout: default
         </div>
       </section>
       
-      <!-- Talks Section - UPDATED with inline slide links -->
+      <!-- Talks Section -->
       <section id="talks" class="section">
         <div class="section-title">
           <div class="section-number">04</div>
@@ -1224,7 +1222,7 @@ layout: default
         </div>
       </section>
       
-      <!-- Gallery Section - UPDATED with captions -->
+      <!-- Gallery Section -->
       <section id="gallery" class="section">
         <div class="section-title">
           <div class="section-number">05</div>
@@ -1245,7 +1243,7 @@ layout: default
         </div>
       </section>
       
-      <!-- Media & Links Section - UPDATED and condensed -->
+      <!-- Media & Links Section -->
       <section id="links" class="section">
         <div class="section-title">
           <div class="section-number">06</div>
@@ -1302,9 +1300,9 @@ layout: default
   <img class="lightbox-content" id="lightbox-img">
 </div>
 
-<!-- Footer - NEW -->
+<!-- Footer -->
 <footer>
-  <p>&copy; 2026 Muhammad Elsadany. Last updated: January 2026.</p>
+  <p>&copy; 2026 Muhammad Elsadany. Last updated: July 2026.</p>
 </footer>
 
 <script>
