@@ -973,7 +973,7 @@ layout: default
       <a href="https://github.com/melsadany" class="contact-link" target="_blank">
         <span>GitHub</span>
       </a>
-      <a href="assets/docs/profile/Elsadany-resume_122825.pdf" class="contact-link">
+      <a href="assets/docs/profile/Elsadany-resume_latest.pdf" class="contact-link">
         <span>Resume (PDF)</span>
       </a>
       <a href="https://orcid.org/0000-0002-1019-3905" class="contact-link" target="_blank">
@@ -1043,7 +1043,7 @@ layout: default
       </div>
       
       <div style="margin-bottom: 30px; text-align: right;">
-        <a href="assets/docs/profile/Elsadany-resume_122825.pdf" class="link-button" target="_blank">
+        <a href="assets/docs/profile/Elsadany-resume_latest.pdf" class="link-button" target="_blank">
           ↓ Download Resume (PDF)
         </a>
       </div>
